@@ -5,4 +5,5 @@ export interface ResourceAmount {
 
 export enum ResourceType {
     Mana = "Mana",
+    Gems = "Gems"
   }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import * as timeActions from '../app/state/time/time.actions';
+import * as resourcesActions from '../app/state/resources/resources.actions';
 import * as timeSelectors from '../app/state/time/time.selector';
 
 @Component({
@@ -10,20 +11,23 @@ import * as timeSelectors from '../app/state/time/time.selector';
 })
 export class AppComponent {
   title = 'front';
-  nemesis = 100;
 
   ticks$ = this.store.select(timeSelectors.selectTicks);
-
   ticks: number;
+
+  nemesis$ = this.store.select(timeSelectors.selectNemesis);
+  nemesis: number;
 
   constructor(
     private store: Store
   ) {
     this.ticks = 0;
+    this.nemesis = 3000;
   }
 
   reset() {
     this.store.dispatch(timeActions.resetTick());
+    this.store.dispatch(resourcesActions.resetMana());
   }
 
   get nemesisAttackTimer() {

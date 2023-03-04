@@ -34,12 +34,6 @@ export class ResourceDisplayComponent {
       this.ticks = ticks;
     });
 
-    this.store.dispatch(resourcesActions.generate({
-      resourceAmount: {
-        type: ResourceType.Mana,
-        amount: 1
-      }
-    }));
   }
 
 }

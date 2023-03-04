@@ -7,3 +7,8 @@ export const selectTicks = createSelector(
     selectTime,
     state => state.ticks
 );
+
+export const selectNemesis = createSelector(
+    selectTime,
+    state => state.nemesis
+);

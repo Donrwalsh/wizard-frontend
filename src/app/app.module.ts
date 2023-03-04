@@ -6,9 +6,11 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MovesModule } from './moves/moves.module';
 import { ResourcesModule } from './resources/resources.module';
 import { ROOT_REDUCERS } from './state/app.state';
 import { metaReducers } from './state/meta.reducer';
+import { MovesEffects } from './state/moves/moves.effects';
 
 @NgModule({
   declarations: [
@@ -18,8 +20,9 @@ import { metaReducers } from './state/meta.reducer';
     BrowserModule,
     AppRoutingModule,
     ResourcesModule,
+    MovesModule,
     StoreModule.forRoot(ROOT_REDUCERS, { metaReducers }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([MovesEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [],

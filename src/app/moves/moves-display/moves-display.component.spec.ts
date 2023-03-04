@@ -1,22 +1,22 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 
-import { ResourceDisplayComponent } from './resource-display.component';
+import { MovesDisplayComponent } from './moves-display.component';
 
-describe('ResourceDisplayComponent', () => {
-  let component: ResourceDisplayComponent;
-  let fixture: ComponentFixture<ResourceDisplayComponent>;
+describe('MovesDisplayComponent', () => {
+  let component: MovesDisplayComponent;
+  let fixture: ComponentFixture<MovesDisplayComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ ResourceDisplayComponent ],
+    TestBed.configureTestingModule({
+      declarations: [MovesDisplayComponent],
       providers: [
         provideMockStore({})
       ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ResourceDisplayComponent);
+    fixture = TestBed.createComponent(MovesDisplayComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

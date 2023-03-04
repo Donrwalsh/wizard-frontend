@@ -15,7 +15,10 @@ const featureReducer = createReducer(
             mana: state.mana + (resourceAmount.type === ResourceType.Mana ? resourceAmount.amount : 0)
     })),
 
-
+    on(actions.resetMana, (state ) => ({
+        ...state,
+        mana: 0
+    })),
 )
 
 export function resourcesReducer(state: ResourcesState | undefined, action: Action) {
