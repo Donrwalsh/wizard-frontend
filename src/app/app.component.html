@@ -1,7 +1,14 @@
-<div *ngIf="ticks < nemesis">Ticks: {{ticks}}</div>
+<div class="content">
+  <span>front app is running!</span>
+</div>
 
+<div *ngIf="ticks < nemesis">Ticks: {{ticks}}</div>
+<br />
+<div *ngIf="ticks < nemesis">Nemesis attacks in {{nemesisAttackTimer}}</div>
 <div *ngIf="ticks >= nemesis">Game Over</div>
 
 <br />
 <br />
 <button (click)="reset()">Reset</button>
+
+<app-resource-display>

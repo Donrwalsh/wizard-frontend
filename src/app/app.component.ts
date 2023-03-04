@@ -9,7 +9,8 @@ import * as timeSelectors from '../app/state/time/time.selector';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  nemesis = 3000;
+  title = 'front';
+  nemesis = 100;
 
   ticks$ = this.store.select(timeSelectors.selectTicks);
 
@@ -23,6 +24,12 @@ export class AppComponent {
 
   reset() {
     this.store.dispatch(timeActions.resetTick());
+  }
+
+  get nemesisAttackTimer() {
+    let minutes = Math.floor(this.nemesis / 600 - this.ticks / 600);
+    let seconds = 60 - Math.floor((this.ticks % 600)/10)
+    return `${minutes}:${seconds == 60 ? "00" : seconds}` ;
   }
 
   ngOnInit() {
