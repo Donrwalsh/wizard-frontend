@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Build & Deploy') {
             steps {
-                sh 'ng build'
+                sh 'npm run build'
                 sh 'docker build -t wizard-frontend .'
                 sh 'docker image ls'
                 sh 'docker run --name wizard-frontend-container -d -p 8081:80 wizard-frontend'
