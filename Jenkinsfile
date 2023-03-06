@@ -5,10 +5,10 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh 'node --version'
+                sh 'ls'
+                sh 'rm -rf node_modules'
                 sh 'npm install'
-                sh 'npm run test'
-                sh 'docker -v'
+                sh 'npm run test-ci'
             }
         }
         stage('Build & Deploy') {
