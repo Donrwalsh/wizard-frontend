@@ -15,6 +15,8 @@ pipeline {
                 sh 'npm run build'
                 sh 'docker build -t wizard-frontend .'
                 sh 'docker image ls'
+                sh 'docker stop wizard-frontend'
+                sh 'docker remove wizard-frontend'
                 sh 'docker run --name wizard-frontend-container -d -p 8081:80 wizard-frontend'
             }
         }
