@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
+import * as movesActions from '../app/state/moves/moves.actions';
 import * as timeActions from '../app/state/time/time.actions';
+import * as eventsActions from '../app/state/events/events.actions';
 import * as resourcesActions from '../app/state/resources/resources.actions';
 import * as timeSelectors from '../app/state/time/time.selector';
 
@@ -26,8 +28,11 @@ export class AppComponent {
   }
 
   reset() {
+    // dispatch a single 'reset' action here.
     this.store.dispatch(timeActions.resetTick());
     this.store.dispatch(resourcesActions.resetMana());
+    this.store.dispatch(movesActions.resetAllMoves());
+    this.store.dispatch(eventsActions.clearEventsLog());
   }
 
   get nemesisAttackTimer() {

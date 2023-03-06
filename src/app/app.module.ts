@@ -9,8 +9,11 @@ import { AppComponent } from './app.component';
 import { MovesModule } from './moves/moves.module';
 import { ResourcesModule } from './resources/resources.module';
 import { ROOT_REDUCERS } from './state/app.state';
+import { EventsEffects } from './state/events/events.effects';
 import { metaReducers } from './state/meta.reducer';
 import { MovesEffects } from './state/moves/moves.effects';
+import { ResourcesEffects } from './state/resources/resources.effects';
+import { TimeEffects } from './state/time/time.effects';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,7 @@ import { MovesEffects } from './state/moves/moves.effects';
     ResourcesModule,
     MovesModule,
     StoreModule.forRoot(ROOT_REDUCERS, { metaReducers }),
-    EffectsModule.forRoot([MovesEffects]),
+    EffectsModule.forRoot([EventsEffects, MovesEffects, ResourcesEffects, TimeEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [],

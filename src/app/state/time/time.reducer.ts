@@ -4,7 +4,7 @@ import * as actions from './time.actions';
 
 export const initialState: TimeState = {
     ticks: 0,
-    nemesis: 3000
+    nemesis: 3000,
 }
 
 const featureReducer = createReducer(
@@ -23,7 +23,6 @@ const featureReducer = createReducer(
             ticks: state.ticks + 1
         }
     }),
-
 
 )
 
