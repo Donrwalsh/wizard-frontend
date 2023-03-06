@@ -6,6 +6,16 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'node --version'
+                sh 'npm run test'
+                sh 'docker -v'
+            }
+        },
+        stage('Build & Deploy') {
+            steps {
+                sh 'ng build'
+                sh 'docker build -t wizard-frontend .'
+                sh 'docker image ls'
+                sh 'docker run --name wizard-frontend-container -d -p 8081:80 wizard-frontend'
             }
         }
     }
