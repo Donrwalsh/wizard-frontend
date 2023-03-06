@@ -9,7 +9,7 @@ pipeline {
                 sh 'npm run test'
                 sh 'docker -v'
             }
-        },
+        }
         stage('Build & Deploy') {
             steps {
                 sh 'ng build'
