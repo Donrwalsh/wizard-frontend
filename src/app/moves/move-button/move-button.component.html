@@ -1,0 +1,9 @@
+<!-- <button [disabled]="gameMove.onCooldown" (click)="clickMove()">{{gameMove.type}}</button> -->
+
+
+<div class="move-button-container" (click)="clickMove()">
+    <div *ngIf="gameMove.onCooldown === true" class="move-button-progress">
+        
+    </div>
+    <img class="move-image" src="/assets/moves/Focus.png" />
+</div>

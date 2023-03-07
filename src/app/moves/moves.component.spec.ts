@@ -1,22 +1,22 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 
-import { MovesDisplayComponent } from './moves-display.component';
+import { MovesComponent } from './moves.component';
 
 describe('MovesDisplayComponent', () => {
-  let component: MovesDisplayComponent;
-  let fixture: ComponentFixture<MovesDisplayComponent>;
+  let component: MovesComponent;
+  let fixture: ComponentFixture<MovesComponent>;
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      declarations: [MovesDisplayComponent],
+      declarations: [MovesComponent],
       providers: [
         provideMockStore({})
       ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MovesDisplayComponent);
+    fixture = TestBed.createComponent(MovesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

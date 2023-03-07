@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 import { AppComponent } from './app.component';
-import { MovesDisplayComponent } from './moves/moves-display/moves-display.component';
+import { MovesComponent } from './moves/moves.component';
 import { ResourceDisplayComponent } from './resources/resource-display/resource-display.component';
 
 describe('AppComponent', () => {
@@ -14,7 +14,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         ResourceDisplayComponent,
-        MovesDisplayComponent
+        MovesComponent
       ],
       providers: [
         provideMockStore({})
