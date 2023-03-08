@@ -4,11 +4,24 @@ $common-radius: 20px
 .move-button-container
     height: 120px
     width: 120px
-    background-color: #C8F427
     border-radius: $common-radius
     position: relative
     margin: auto
     overflow: hidden
+
+    &.focus
+        background-color: #C8F427
+
+        .move-button-progress
+            background-color: #8ce74c
+
+    &:hover
+        box-shadow: rgb(0, 0, 0, .25) 0 8px 15px
+        transform: scale(1.05)
+    
+    &:active
+        box-shadow: none
+        transform: scale(.9)
     
     .move-image
         height: $image-size
@@ -18,10 +31,14 @@ $common-radius: 20px
         position: relative
 
     .move-button-progress
-        background-color: #8ce74c
         position: absolute
         height: 150%
         width: 0%
 
 .move-button-container.on-cooldown
     background-color: darkgray
+    transform: scale(.95)
+
+    &:hover
+        box-shadow: none
+        transform: scale(.95)
