@@ -1,6 +1,13 @@
 import { ResourceAmount, ResourceType } from "../resources/resources.model"
 import { GameEvent } from "../state/events/event.model";
 
+export var notOnCooldown: MoveCooldown = {
+    onCooldown: false,
+    ticksStart: null,
+    ticksFinish: null,
+    animation: null
+}
+
 export enum MovesType {
     focus = "Focus",
     conjureGem = "Conjure Gem"
@@ -9,24 +16,30 @@ export enum MovesType {
 export interface Move {
     type: MovesType,
     unlocked: boolean,
-    onCooldown: boolean,
-    readyAt: number | null
+    cooldown: MoveCooldown;
     // buffs: any[],
 }
 
 export var initialFocus: Move = {
     type: MovesType.focus,
     unlocked: true,
-    onCooldown: false,
-    readyAt: null
+    cooldown: notOnCooldown,
 }
 
 export var initialConjureGem: Move = {
     type: MovesType.conjureGem,
     unlocked: false,
-    onCooldown: false,
-    readyAt: null
+    cooldown: notOnCooldown,
 }
+
+export interface MoveCooldown {
+    onCooldown: boolean;
+    ticksStart: number | null;
+    ticksFinish: number | null;
+    animation: number | null;
+}
+
+
 
 export class GameMove {
     baseMove: Move;
@@ -34,16 +47,14 @@ export class GameMove {
     unlocked: boolean;
     baseCooldown: number;
     baseGenerates: ResourceAmount;
-    onCooldown: boolean;
-    readyAt: number | null;
+    cooldown: MoveCooldown;
     
 
     constructor(move: Move) {
         this.baseMove = move;
         this.type = move.type;
         this.unlocked = move.unlocked;
-        this.onCooldown = move.onCooldown;
-        this.readyAt = move.readyAt;
+        this.cooldown = move.cooldown;
 
         switch(move.type) { 
             case MovesType.focus: { 
@@ -77,5 +88,16 @@ export class GameMove {
 
     calcGameEvent(ticks: number): GameEvent {
         return new GameEvent(ticks, this.baseMove);
+    }
+
+    calculateCooldownPercent(ticks: number): number {
+        let percent = 0;
+        if (this.cooldown.onCooldown === true) {
+            let ticksDuration = this.cooldown.ticksFinish! - this.cooldown.ticksStart!;
+            let ticksElapsed = ticks - this.cooldown.ticksStart!;
+            let proportion = ticksElapsed / ticksDuration;
+            percent = proportion * 100;
+        }
+        return percent;
     }
 }

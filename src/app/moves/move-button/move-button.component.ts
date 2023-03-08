@@ -8,6 +8,7 @@ import { GameMove } from '../moves.model';
 })
 export class MoveButtonComponent {
   @Input() gameMove!: GameMove;
+  @Input() ticks!: number;
 
   @Output() moveButtonEvent = new EventEmitter<GameMove>();
 

@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { GameMove } from 'src/app/moves/moves.model';
+import { GameMove, MoveCooldown } from 'src/app/moves/moves.model';
 
 export const useMove = createAction(
     '[Moves] Use',
@@ -8,7 +8,7 @@ export const useMove = createAction(
 
 export const putMoveOnCooldown = createAction(
     '[Moves] Put On Cooldown',
-    props<{ gameMove: GameMove, readyAt: number }>()
+    props<{ gameMove: GameMove, moveCooldown: MoveCooldown }>()
 );
 
 export const takeMoveOffCooldown = createAction(

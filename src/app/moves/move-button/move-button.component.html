@@ -1,9 +1,7 @@
-<!-- <button [disabled]="gameMove.onCooldown" (click)="clickMove()">{{gameMove.type}}</button> -->
-
-
-<div class="move-button-container" (click)="clickMove()">
-    <div *ngIf="gameMove.onCooldown === true" class="move-button-progress">
-        
+<div class="move-button-container" (click)="clickMove()"
+    [ngClass]="{'on-cooldown': gameMove.cooldown.onCooldown === true }">
+    <div *ngIf="gameMove.cooldown.animation === 1 && gameMove.cooldown.onCooldown === true"
+        [ngStyle]="{'width': gameMove.calculateCooldownPercent(ticks) + '%'}" class="move-button-progress">
     </div>
     <img class="move-image" src="/assets/moves/Focus.png" />
 </div>

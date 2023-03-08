@@ -26,7 +26,14 @@ export class MovesEffects {
 
                         // Put on Cooldown
                         this.store.dispatch(movesActions.putMoveOnCooldown(
-                            { gameMove: action.gameMove, readyAt: ticks + action.gameMove.calculateCooldown() }
+                            {
+                                gameMove: action.gameMove, moveCooldown: {
+                                    onCooldown: true,
+                                    ticksStart: ticks,
+                                    ticksFinish: ticks + action.gameMove.calculateCooldown(),
+                                    animation: 1
+                                }
+                            }
                         ));
 
 

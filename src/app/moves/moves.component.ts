@@ -25,7 +25,7 @@ export class MovesComponent {
     ngOnInit() {
         this.ticks$.subscribe(ticks => {
             this.ticks = ticks;
-            let gameMoves = [this.focus].filter(gameMove => gameMove.onCooldown === true && gameMove.readyAt == this.ticks);
+            let gameMoves = [this.focus].filter(gameMove => gameMove.cooldown.onCooldown === true && gameMove.cooldown.ticksFinish == this.ticks);
             gameMoves.forEach((gameMove) => this.store.dispatch(actions.takeMoveOffCooldown({ gameMove })));
         });
 
@@ -35,11 +35,11 @@ export class MovesComponent {
     }
 
     canUse(gameMove: GameMove): boolean {
-        return !gameMove.onCooldown && gameMove.unlocked;
+        return !gameMove.cooldown.onCooldown && gameMove.unlocked;
     }
 
     useMove(event: GameMove) {
-        if (!event.onCooldown && event.unlocked && this.ticks < 3000) //replace with proper store call
+        if (!event.cooldown.onCooldown && event.unlocked && this.ticks < 3000) //replace with proper store call
         this.store.dispatch(actions.useMove({ gameMove: event }));
     }
 }

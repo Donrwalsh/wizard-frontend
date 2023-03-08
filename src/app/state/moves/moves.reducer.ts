@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from "@ngrx/store";
-import { initialConjureGem, initialFocus, Move, MovesType } from "src/app/moves/moves.model";
+import { initialConjureGem, initialFocus, Move, MovesType, notOnCooldown } from "src/app/moves/moves.model";
 import { ResourceAmount, ResourceType } from "src/app/resources/resources.model";
 import { MovesState, ResourcesState } from "../app.state";
 import * as actions from './moves.actions';
@@ -12,16 +12,16 @@ export const initialState: MovesState = {
 const featureReducer = createReducer(
     initialState,
 
-    on(actions.putMoveOnCooldown, (state, { gameMove, readyAt }) => ({
+    on(actions.putMoveOnCooldown, (state, { gameMove, moveCooldown }) => ({
         ...state,
-        focus: gameMove.type === MovesType.focus ? { ...state.focus, onCooldown: true, readyAt } : state.focus,
-        conjureGem: gameMove.type === MovesType.conjureGem ? { ...state.conjureGem, onCooldown: true, readyAt } : state.conjureGem
+        focus: gameMove.type === MovesType.focus ? { ...state.focus, cooldown: moveCooldown } : state.focus,
+        conjureGem: gameMove.type === MovesType.conjureGem ? { ...state.conjureGem, cooldown: moveCooldown } : state.conjureGem
     })),
 
     on(actions.takeMoveOffCooldown, (state, { gameMove }) => ({
         ...state,
-        focus: gameMove.type === MovesType.focus ? { ...state.focus, onCooldown: false, readyAt: null } : state.focus,
-        conjureGem: gameMove.type === MovesType.conjureGem ? { ...state.conjureGem, onCooldown: false, readyAt: null } : state.conjureGem
+        focus: gameMove.type === MovesType.focus ? { ...state.focus, cooldown: notOnCooldown } : state.focus,
+        conjureGem: gameMove.type === MovesType.conjureGem ? { ...state.conjureGem, cooldown: notOnCooldown } : state.conjureGem
     })),
 
     on (actions.resetAllMoves, (state) => ({

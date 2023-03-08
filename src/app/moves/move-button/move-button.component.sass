@@ -8,6 +8,7 @@ $common-radius: 20px
     border-radius: $common-radius
     position: relative
     margin: auto
+    overflow: hidden
     
     .move-image
         height: $image-size
@@ -17,8 +18,10 @@ $common-radius: 20px
         position: relative
 
     .move-button-progress
-        background-color: darkgray
+        background-color: #8ce74c
         position: absolute
-        height: 100%
-        width: 100%
-        border-radius: 20px
+        height: 150%
+        width: 0%
+
+.move-button-container.on-cooldown
+    background-color: darkgray
