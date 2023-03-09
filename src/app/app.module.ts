@@ -13,7 +13,7 @@ import { EventsEffects } from './state/events/events.effects';
 import { metaReducers } from './state/meta.reducer';
 import { MovesEffects } from './state/moves/moves.effects';
 import { ResourcesEffects } from './state/resources/resources.effects';
-import { TimeEffects } from './state/time/time.effects';
+import { GameEffects } from './state/game/game.effects';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import { TimeEffects } from './state/time/time.effects';
     ResourcesModule,
     MovesModule,
     StoreModule.forRoot(ROOT_REDUCERS, { metaReducers }),
-    EffectsModule.forRoot([EventsEffects, MovesEffects, ResourcesEffects, TimeEffects]),
+    EffectsModule.forRoot([EventsEffects, MovesEffects, ResourcesEffects, GameEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [],

@@ -1,6 +1,6 @@
 <div class="move-button-container" (click)="clickMove()"
     [ngClass]="{
-        'on-cooldown': gameMove.cooldown.onCooldown === true,
+        'on-cooldown': gameMove.cooldown.onCooldown === true || !gameActive,
         'focus': gameMove.type == 'Focus'
      }">
     <div *ngIf="gameMove.cooldown.animation === 1 && gameMove.cooldown.onCooldown === true"

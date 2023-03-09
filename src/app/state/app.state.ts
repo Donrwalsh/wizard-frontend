@@ -4,15 +4,16 @@ import { GameEvent } from "./events/event.model";
 import { eventsReducer } from "./events/events.reducer";
 import { movesReducer } from "./moves/moves.reducer";
 import { resourcesReducer } from "./resources/resources.reducer";
-import { timeReducer } from "./time/time.reducer";
+import { gameReducer } from "./game/game.reducer";
 
 export interface EventsState {
     eventsLog: GameEvent[];
 }
 
-export interface TimeState {
-    nemesis: number;
+export interface GameState {
+    active: boolean;
     ticks: number;
+    nemesis: number;
 }
 
 export interface ResourcesState {
@@ -26,14 +27,14 @@ export interface MovesState {
 
 export interface AppState {
     events: EventsState;
+    game: GameState;
     moves: MovesState;
     resources: ResourcesState;
-    time: TimeState;
 }
 
 export const ROOT_REDUCERS: ActionReducerMap<AppState> = {
     events: eventsReducer,
+    game: gameReducer,
     moves: movesReducer,
     resources: resourcesReducer,
-    time: timeReducer,
 }

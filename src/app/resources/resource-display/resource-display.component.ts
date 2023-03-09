@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import * as resourcesSelectors from '../../state/resources/resources.selector';
 import * as resourcesActions from '../../state/resources/resources.actions';
 import { ResourceType } from '../resources.model';
-import * as timeSelectors from '../../state/time/time.selector';
+import * as timeSelectors from '../../state/game/game.selector';
 
 @Component({
   selector: 'app-resource-display',

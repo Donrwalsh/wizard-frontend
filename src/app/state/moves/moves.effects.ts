@@ -4,8 +4,8 @@ import { Store } from '@ngrx/store';
 import { tap } from 'rxjs/operators';
 import * as eventsActions from '../../state/events/events.actions';
 import * as resourcesActions from '../../state/resources/resources.actions';
-import * as timeSelectors from '../../state/time/time.selector';
-import * as timeActions from '../../state/time/time.actions';
+import * as timeSelectors from '../game/game.selector';
+import * as timeActions from '../game/game.actions';
 import { GameEvent } from '../events/event.model';
 import * as movesActions from './moves.actions';
 
@@ -17,29 +17,26 @@ export class MovesEffects {
             this.actions$.pipe(
                 ofType(movesActions.useMove),
                 concatLatestFrom(() => [
-                    this.store.select(timeSelectors.selectTicks),
-                    this.store.select(timeSelectors.selectNemesis)
+                    this.store.select(timeSelectors.selectTicks)
                 ]),
-                tap(([action, ticks, nemesis]) => {
-                    if (ticks < nemesis) {
+                tap(([action, ticks]) => {
+                    //moves.component has already determined that this move can be used
 
-
-                        // Put on Cooldown
-                        this.store.dispatch(movesActions.putMoveOnCooldown(
-                            {
-                                gameMove: action.gameMove, moveCooldown: {
-                                    onCooldown: true,
-                                    ticksStart: ticks,
-                                    ticksFinish: ticks + action.gameMove.calculateCooldown(),
-                                    animation: 1
-                                }
+                    // Put on Cooldown
+                    this.store.dispatch(movesActions.putMoveOnCooldown(
+                        {
+                            gameMove: action.gameMove, moveCooldown: {
+                                onCooldown: true,
+                                ticksStart: ticks,
+                                ticksFinish: ticks + action.gameMove.calculateCooldown(),
+                                animation: 1
                             }
-                        ));
+                        }
+                    ));
 
-
-                        // Log the Event
-                        // this.store.dispatch(eventsActions.logEvent({event: new GameEvent(ticks, action.move)}));
-                    }
+                    // Log the event will be handled by Event State, not here
+                    // Log the Event
+                    // this.store.dispatch(eventsActions.logEvent({event: new GameEvent(ticks, action.move)}));
                 })
             ),
         { dispatch: false }

@@ -5,7 +5,3 @@ export const generate = createAction(
     '[Resources] Generate',
     props<{ resourceAmount: ResourceAmount }>()
 );
-
-export const resetMana = createAction(
-    '[Resources] Reset Mana',
-);

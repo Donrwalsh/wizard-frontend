@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { tap } from 'rxjs';
 import * as moveActions from '../moves/moves.actions';
 import * as resourcesActions from './resources.actions';
+import * as gameActions from '../game/game.actions';
 
 @Injectable()
 export class ResourcesEffects {
@@ -21,6 +22,14 @@ export class ResourcesEffects {
             ),
         { dispatch: false }
     )
+
+    // gameRestart$ = createEffect(
+    //     () => 
+    //         this.actions$.pipe(
+    //             ofType(gameActions.restart),
+    //             tap((action) =>)
+    //         )
+    // )
 
     constructor(
         private actions$: Actions,

@@ -1,9 +1,9 @@
-import * as actions from './time.actions';
+import * as actions from './game.actions';
 
-describe('NgRx Time', () => {
+describe('NgRx Game', () => {
 
     describe('actions', () => {
-        let expectedActionPrefix = '[Time]';
+        let expectedActionPrefix = '[Game]';
 
         it('all action types should begin with ' + expectedActionPrefix, () => {
             Object.keys(actions).map(key => {

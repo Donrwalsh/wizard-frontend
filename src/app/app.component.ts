@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import * as movesActions from '../app/state/moves/moves.actions';
-import * as timeActions from '../app/state/time/time.actions';
+import * as gameActions from './state/game/game.actions';
 import * as eventsActions from '../app/state/events/events.actions';
 import * as resourcesActions from '../app/state/resources/resources.actions';
-import * as timeSelectors from '../app/state/time/time.selector';
+import * as gameSelectors from './state/game/game.selector';
 
 @Component({
   selector: 'app-root',
@@ -14,11 +14,14 @@ import * as timeSelectors from '../app/state/time/time.selector';
 export class AppComponent {
   title = 'front';
 
-  ticks$ = this.store.select(timeSelectors.selectTicks);
+  ticks$ = this.store.select(gameSelectors.selectTicks);
   ticks: number;
 
-  nemesis$ = this.store.select(timeSelectors.selectNemesis);
+  nemesis$ = this.store.select(gameSelectors.selectNemesis);
   nemesis: number;
+
+  gameActive$ = this.store.select(gameSelectors.selectActive);
+  gameActive: boolean = false;
 
   constructor(
     private store: Store
@@ -27,10 +30,10 @@ export class AppComponent {
     this.nemesis = 3000;
   }
 
-  reset() {
-    // dispatch a single 'reset' action here.
-    this.store.dispatch(timeActions.resetTick());
-    this.store.dispatch(resourcesActions.resetMana());
+  restart() {
+    //Expand to handle all behaviors with a single action dispatch
+    this.store.dispatch(gameActions.restart())
+
     this.store.dispatch(movesActions.resetAllMoves());
     this.store.dispatch(eventsActions.clearEventsLog());
   }
@@ -44,11 +47,18 @@ export class AppComponent {
   ngOnInit() {
     this.ticks$.subscribe(ticks => {
       this.ticks = ticks;
+      if (ticks >= this.nemesis) {
+        this.store.dispatch(gameActions.finish());
+      }
+    });
+
+    this.gameActive$.subscribe(active => {
+      this.gameActive = active;
     });
 
     setInterval(() => {
-      if (this.ticks < this.nemesis) {
-        this.store.dispatch(timeActions.tick());
+      if (this.gameActive) {
+        this.store.dispatch(gameActions.tick());
       }
     }, 100);
 

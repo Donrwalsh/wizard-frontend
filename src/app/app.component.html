@@ -1,12 +1,14 @@
 
-<div *ngIf="ticks < nemesis">Ticks: {{ticks}}</div>
+<!-- <div *ngIf="gameActive">Ticks: {{ticks}}</div> -->
 <br />
-<div *ngIf="ticks < nemesis">Nemesis attacks in {{nemesisAttackTimer}}</div>
-<div *ngIf="ticks >= nemesis">Game Over</div>
+<div *ngIf="gameActive">Nemesis attacks in {{nemesisAttackTimer}}</div>
+<div *ngIf="!gameActive">Game Over</div>
 
 <br />
 <br />
-<button (click)="reset()">Reset</button>
+<button *ngIf="!gameActive" (click)="restart()">Restart</button>
+<br />
+<br />
 
 <app-resource-display></app-resource-display>
 <app-moves></app-moves>

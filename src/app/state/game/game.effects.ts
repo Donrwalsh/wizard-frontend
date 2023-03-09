@@ -3,7 +3,7 @@ import { Actions } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 
 @Injectable()
-export class TimeEffects {
+export class GameEffects {
 
     // createCooldown$ = createEffect(
     //     () =>
