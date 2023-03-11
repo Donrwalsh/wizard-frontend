@@ -1,4 +1,4 @@
-import { ResourceAmount, ResourceType } from "../resources/resources.model"
+import { ResourceAmount, ResourceRange, ResourceType } from "../resources/resources.model"
 import { GameEvent } from "../state/events/event.model";
 
 export var notOnCooldown: MoveCooldown = {
@@ -10,25 +10,34 @@ export var notOnCooldown: MoveCooldown = {
 
 export enum MovesType {
     focus = "Focus",
-    conjureGem = "Conjure Gem"
+    learn = "Learn",
+    cast = "Cast",
+    mission = "Mission"
 }
 
 export interface Move {
     type: MovesType,
-    unlocked: boolean,
     cooldown: MoveCooldown;
     // buffs: any[],
 }
 
 export var initialFocus: Move = {
     type: MovesType.focus,
-    unlocked: true,
     cooldown: notOnCooldown,
 }
 
-export var initialConjureGem: Move = {
-    type: MovesType.conjureGem,
-    unlocked: false,
+export var initialLearn: Move = {
+    type: MovesType.learn,
+    cooldown: notOnCooldown,
+}
+
+export var initialCast: Move = {
+    type: MovesType.cast,
+    cooldown: notOnCooldown,
+}
+
+export var initialMission: Move = {
+    type: MovesType.mission,
     cooldown: notOnCooldown,
 }
 
@@ -39,38 +48,57 @@ export interface MoveCooldown {
     animation: number | null;
 }
 
-
+export type PossibleOutcome = ResourceAmount | ResourceRange; // expands to cover all possible results of move usage.
 
 export class GameMove {
     baseMove: Move;
     type: MovesType;
-    unlocked: boolean;
     baseCooldown: number;
-    baseGenerates: ResourceAmount;
+
+    baseOutcomes: PossibleOutcome[];
+
+
+    // baseGenerates: ResourceAmount; // This is locked into the OG focus plan.
+    //how to represent the different outcomes?
+
     cooldown: MoveCooldown;
     
 
     constructor(move: Move) {
         this.baseMove = move;
         this.type = move.type;
-        this.unlocked = move.unlocked;
         this.cooldown = move.cooldown;
 
         switch(move.type) { 
             case MovesType.focus: { 
                 this.baseCooldown = 100;
-                this.baseGenerates = { type: ResourceType.Mana, amount: 1 }
+                this.baseOutcomes = [
+                    { type: ResourceType.basicMana, lowAmount: 0, highAmount: 3 },
+                    { type: ResourceType.basicScroll, lowAmount: 0, highAmount: 1 },
+                ]
                break; 
             } 
-            case MovesType.conjureGem: { 
-                this.baseCooldown = 200;
-                this.baseGenerates = { type: ResourceType.Gems, amount: 1 }
+            case MovesType.learn: { 
+                this.baseCooldown = 300;
+                this.baseOutcomes = [
+                    { type: ResourceType.basicMana, amount: 5 },
+                    { type: ResourceType.basicScroll, amount: 1 }
+                ]
+               break; 
+            }
+            case MovesType.cast: { 
+                this.baseCooldown = 1000;
+                this.baseOutcomes = []
+               break; 
+            }
+            case MovesType.mission: { 
+                this.baseCooldown = 5000;
+                this.baseOutcomes = []
                break; 
             } 
             default: { 
                 this.baseCooldown = 5000;
-                //TODO: This needs a way to easily represent 'nothing'
-                this.baseGenerates = { } as ResourceAmount; 
+                this.baseOutcomes = []
                break; 
             } 
          } 
@@ -81,9 +109,9 @@ export class GameMove {
         return this.baseCooldown;
     }
 
-    calculateGenerates(): ResourceAmount {
+    calcOutcomes(): PossibleOutcome[] {
         // Do calculation
-        return this.baseGenerates;
+        return this.baseOutcomes;
     }
 
     calcGameEvent(ticks: number): GameEvent {

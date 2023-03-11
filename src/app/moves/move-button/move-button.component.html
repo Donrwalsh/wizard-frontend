@@ -1,10 +1,16 @@
 <div class="move-button-container" (click)="clickMove()"
     [ngClass]="{
-        'on-cooldown': gameMove.cooldown.onCooldown === true || !gameActive,
-        'focus': gameMove.type == 'Focus'
+        'on-cooldown': gameMove.cooldown.onCooldown === true || !gameActive ,
+        'focus': gameMove.type == 'Focus',
+        'learn': gameMove.type == 'Learn',
+        'cast': gameMove.type == 'Cast',
+        'mission': gameMove.type == 'Mission'
      }">
-    <div *ngIf="gameMove.cooldown.animation === 1 && gameMove.cooldown.onCooldown === true"
+    <div *ngIf="(gameMove.cooldown.animation === 1 && gameMove.cooldown.onCooldown === true)"
         [ngStyle]="{'width': gameMove.calculateCooldownPercent(ticks) + '%'}" class="move-button-progress">
     </div>
-    <img class="move-image" src="/assets/moves/Focus.png" />
+    <img *ngIf="gameMove.type == 'Focus'" class="move-image" src="/assets/moves/Focus.png" />
+    <img *ngIf="gameMove.type == 'Learn'" class="move-image" src="/assets/moves/Learn.png" />
+    <img *ngIf="gameMove.type == 'Cast'" class="move-image" src="/assets/moves/Cast.png" />
+    <img *ngIf="gameMove.type == 'Mission'" class="move-image" src="/assets/moves/Mission.png" />
 </div>

@@ -17,12 +17,15 @@ export interface GameState {
 }
 
 export interface ResourcesState {
-    mana: number;
+    basicMana: number;
+    basicScrolls: number;
 }
 
 export interface MovesState {
     focus: Move;
-    conjureGem: Move;
+    learn: Move;
+    cast: Move;
+    mission: Move;
 }
 
 export interface AppState {

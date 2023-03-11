@@ -12,26 +12,24 @@ import * as timeSelectors from '../../state/game/game.selector';
 })
 export class ResourceDisplayComponent {
 
-  ticks$ = this.store.select(timeSelectors.selectTicks);
-  ticks: number;
+  basicMana$ = this.store.select(resourcesSelectors.selectBasicMana);
+  basicMana!: number;
 
-  mana$ = this.store.select(resourcesSelectors.selectMana);
-  mana: number;
+  basicScrolls$ = this.store.select(resourcesSelectors.selectBasicScrolls);
+  basicScrolls!: number;
 
   constructor(
     private store: Store
   ) {
-    this.mana = 0;
-    this.ticks = 0;
   }
 
   ngOnInit() {
-    this.mana$.subscribe(mana => {
-      this.mana = mana;
+    this.basicMana$.subscribe(mana => {
+      this.basicMana = mana;
     });
     
-    this.ticks$.subscribe(ticks => {
-      this.ticks = ticks;
+    this.basicScrolls$.subscribe(basicScrolls => {
+      this.basicScrolls = basicScrolls;
     });
 
   }

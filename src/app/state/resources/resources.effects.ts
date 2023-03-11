@@ -16,20 +16,12 @@ export class ResourcesEffects {
                 tap((action) =>
                     this.store.dispatch(resourcesActions.generate({
                         //TODO: This needs a way to easily represent 'nothing'
-                        resourceAmount: action.gameMove.calculateGenerates()
+                        resourceBundle: action.generates
                     }))
                 )
             ),
         { dispatch: false }
     )
-
-    // gameRestart$ = createEffect(
-    //     () => 
-    //         this.actions$.pipe(
-    //             ofType(gameActions.restart),
-    //             tap((action) =>)
-    //         )
-    // )
 
     constructor(
         private actions$: Actions,

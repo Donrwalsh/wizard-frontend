@@ -5,20 +5,23 @@ import * as actions from './resources.actions';
 import * as gameActions from '../game/game.actions';
 
 export const initialState: ResourcesState = {
-    mana: 0
+    basicMana: 0,
+    basicScrolls: 0
 }
 
 const featureReducer = createReducer(
     initialState,
 
-    on(actions.generate, (state, { resourceAmount }) => ({
+    on(actions.generate, (state, { resourceBundle }) => ({
             ...state,
-            mana: state.mana + (resourceAmount.type === ResourceType.Mana ? resourceAmount.amount : 0)
+            basicMana: state.basicMana + resourceBundle.basicMana,
+            basicScrolls: state.basicScrolls + resourceBundle.basicScrolls
     })),
 
     on(gameActions.restart, (state ) => ({
         ...state,
-        mana: 0
+        basicMana: 0,
+        basicScrolls: 0
     })),
 )
 

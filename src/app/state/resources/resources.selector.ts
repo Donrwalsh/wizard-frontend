@@ -3,7 +3,12 @@ import { ResourcesState } from "../app.state";
 
 export const selectResources = createFeatureSelector<ResourcesState>('resources');
 
-export const selectMana = createSelector(
+export const selectBasicMana = createSelector(
     selectResources,
-    state => state.mana
+    state => state.basicMana
+);
+
+export const selectBasicScrolls = createSelector(
+    selectResources,
+    state => state.basicScrolls
 );

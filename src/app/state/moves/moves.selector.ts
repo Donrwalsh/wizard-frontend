@@ -8,7 +8,17 @@ export const selectFocus = createSelector(
     state => state.focus
 );
 
-export const selectConjureGem = createSelector(
+export const selectLearn = createSelector(
     selectMoves,
-    state => state.conjureGem
+    state => state.learn
+);
+
+export const selectCast = createSelector(
+    selectMoves,
+    state => state.cast
+);
+
+export const selectMission = createSelector(
+    selectMoves,
+    state => state.mission
 );
