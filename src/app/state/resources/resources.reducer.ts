@@ -11,17 +11,12 @@ export const initialState: ResourcesState = {
 
 const featureReducer = createReducer(
     initialState,
+    on (gameActions.restart, () => (initialState)),
 
     on(actions.generate, (state, { resourceBundle }) => ({
             ...state,
             basicMana: state.basicMana + resourceBundle.basicMana,
             basicScrolls: state.basicScrolls + resourceBundle.basicScrolls
-    })),
-
-    on(gameActions.restart, (state ) => ({
-        ...state,
-        basicMana: 0,
-        basicScrolls: 0
     })),
 )
 

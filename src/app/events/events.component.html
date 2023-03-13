@@ -1,0 +1,12 @@
+<br />
+
+<div id="event-log-header">
+    Event Log
+</div>
+<div id="event-log">
+    <div class="event-entry" *ngFor="let event of eventLog">
+        <span class="timestamp" [innerHTML]="formatTime(event.when)"></span>
+        <span class="entry" [innerHTML]="parseEventDescription(event.description)"></span>
+    </div>
+</div>
+

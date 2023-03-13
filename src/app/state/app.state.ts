@@ -1,6 +1,6 @@
 import { ActionReducerMap } from "@ngrx/store";
 import { Move } from "../moves/moves.model";
-import { GameEvent } from "./events/event.model";
+import { GameEvent } from "../events/event.model";
 import { eventsReducer } from "./events/events.reducer";
 import { movesReducer } from "./moves/moves.reducer";
 import { resourcesReducer } from "./resources/resources.reducer";

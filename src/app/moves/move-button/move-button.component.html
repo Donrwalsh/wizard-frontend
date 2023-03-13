@@ -1,6 +1,6 @@
 <div class="move-button-container" (click)="clickMove()"
     [ngClass]="{
-        'on-cooldown': gameMove.cooldown.onCooldown === true || !gameActive ,
+        'on-cooldown': gameMove.cooldown.onCooldown === true || !gameActive || gameMove.type != 'Focus' ,
         'focus': gameMove.type == 'Focus',
         'learn': gameMove.type == 'Learn',
         'cast': gameMove.type == 'Cast',

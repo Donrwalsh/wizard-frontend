@@ -14,6 +14,7 @@ import { metaReducers } from './state/meta.reducer';
 import { MovesEffects } from './state/moves/moves.effects';
 import { ResourcesEffects } from './state/resources/resources.effects';
 import { GameEffects } from './state/game/game.effects';
+import { EventsModule } from './events/events.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { GameEffects } from './state/game/game.effects';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    EventsModule,
     ResourcesModule,
     MovesModule,
     StoreModule.forRoot(ROOT_REDUCERS, { metaReducers }),

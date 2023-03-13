@@ -15,27 +15,23 @@ export class AppComponent {
   title = 'front';
 
   ticks$ = this.store.select(gameSelectors.selectTicks);
-  ticks: number;
+  ticks!: number;
 
   nemesis$ = this.store.select(gameSelectors.selectNemesis);
-  nemesis: number;
+  nemesis!: number;
 
   gameActive$ = this.store.select(gameSelectors.selectActive);
   gameActive: boolean = false;
 
   constructor(
     private store: Store
-  ) {
-    this.ticks = 0;
-    this.nemesis = 3000;
-  }
+  ) {}
 
   restart() {
     //Expand to handle all behaviors with a single action dispatch
     this.store.dispatch(gameActions.restart())
 
     this.store.dispatch(movesActions.resetAllMoves());
-    this.store.dispatch(eventsActions.clearEventsLog());
   }
 
   get nemesisAttackTimer() {
@@ -51,6 +47,10 @@ export class AppComponent {
         this.store.dispatch(gameActions.finish());
       }
     });
+
+    this.nemesis$.subscribe(nemesis => {
+      this.nemesis = nemesis;
+    })
 
     this.gameActive$.subscribe(active => {
       this.gameActive = active;

@@ -6,7 +6,7 @@ import * as eventsActions from '../../state/events/events.actions';
 import * as resourcesActions from '../../state/resources/resources.actions';
 import * as timeSelectors from '../game/game.selector';
 import * as timeActions from '../game/game.actions';
-import { GameEvent } from '../events/event.model';
+import { GameEvent } from '../../events/event.model';
 import * as movesActions from './moves.actions';
 import { GameMove } from 'src/app/moves/moves.model';
 import { ChaosService } from 'src/app/services/chaos.service';

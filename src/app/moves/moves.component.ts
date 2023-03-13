@@ -38,7 +38,7 @@ export class MovesComponent {
     ngOnInit() {
         this.ticks$.subscribe(ticks => {
             this.ticks = ticks;
-            let gameMoves = [this.focus, this.learn, this.cast, this.mission].filter(gameMove => gameMove.cooldown.onCooldown === true && gameMove.cooldown.ticksFinish == this.ticks);
+            let gameMoves = [this.focus, this.learn, this.cast, this.mission].filter(gameMove => gameMove?.cooldown.onCooldown === true && gameMove.cooldown.ticksFinish == this.ticks);
             gameMoves.forEach((gameMove) => this.store.dispatch(actions.takeMoveOffCooldown({ gameMove })));
         });
 

@@ -10,17 +10,12 @@ export const initialState: GameState = {
 
 const featureReducer = createReducer(
     initialState,
+    on (actions.restart, () => (initialState)),
 
     on(actions.tick, (state: GameState) => {
         return {
             ...state,
             ticks: state.ticks + 1
-        }
-    }),
-
-    on(actions.restart, (state: GameState) => {
-        return {
-            ...initialState
         }
     }),
 

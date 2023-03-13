@@ -15,7 +15,6 @@ export class ResourcesEffects {
                 ofType(moveActions.useMove),
                 tap((action) =>
                     this.store.dispatch(resourcesActions.generate({
-                        //TODO: This needs a way to easily represent 'nothing'
                         resourceBundle: action.generates
                     }))
                 )

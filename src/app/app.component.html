@@ -5,12 +5,17 @@
 <div *ngIf="!gameActive">Game Over</div>
 
 <br />
+
+<app-resource-display></app-resource-display>
+
+<br />
 <br />
 <button *ngIf="!gameActive" (click)="restart()">Restart</button>
 <br />
 <br />
 
-<app-resource-display></app-resource-display>
+<app-events></app-events>
+
 <app-moves></app-moves>
 
 <button (click)="restart()">Restart</button>

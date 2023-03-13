@@ -2,6 +2,7 @@ import { Action, createReducer, on } from "@ngrx/store";
 import { initialCast, initialFocus, initialLearn, initialMission, Move, MovesType, notOnCooldown } from "src/app/moves/moves.model";
 import { ResourceAmount, ResourceType } from "src/app/resources/resources.model";
 import { MovesState, ResourcesState } from "../app.state";
+import * as gameActions from '../game/game.actions';
 import * as actions from './moves.actions';
 
 export const initialState: MovesState = {
@@ -13,6 +14,7 @@ export const initialState: MovesState = {
 
 const featureReducer = createReducer(
     initialState,
+    on (gameActions.restart, () => (initialState)),
 
     on(actions.putMoveOnCooldown, (state, { gameMove, moveCooldown }) => ({
         ...state,
@@ -30,8 +32,6 @@ const featureReducer = createReducer(
         mission: gameMove.type === MovesType.mission ? { ...state.mission, cooldown: notOnCooldown } : state.mission,
         
     })),
-
-    on (actions.resetAllMoves, (state) => (initialState)),
 
 )
 

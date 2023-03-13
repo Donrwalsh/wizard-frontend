@@ -1,5 +1,5 @@
-import { ResourceAmount, ResourceRange, ResourceType } from "../resources/resources.model"
-import { GameEvent } from "../state/events/event.model";
+import { ResourceAmount, ResourceBundle, ResourceRange, ResourceType } from "../resources/resources.model"
+import { GameEvent } from "../events/event.model";
 
 export var notOnCooldown: MoveCooldown = {
     onCooldown: false,
@@ -54,15 +54,8 @@ export class GameMove {
     baseMove: Move;
     type: MovesType;
     baseCooldown: number;
-
     baseOutcomes: PossibleOutcome[];
-
-
-    // baseGenerates: ResourceAmount; // This is locked into the OG focus plan.
-    //how to represent the different outcomes?
-
     cooldown: MoveCooldown;
-    
 
     constructor(move: Move) {
         this.baseMove = move;
@@ -112,10 +105,6 @@ export class GameMove {
     calcOutcomes(): PossibleOutcome[] {
         // Do calculation
         return this.baseOutcomes;
-    }
-
-    calcGameEvent(ticks: number): GameEvent {
-        return new GameEvent(ticks, this.baseMove);
     }
 
     calculateCooldownPercent(ticks: number): number {

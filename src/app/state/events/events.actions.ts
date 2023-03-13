@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { GameEvent } from './event.model';
+import { GameEvent } from '../../events/event.model';
 
 export const logEvent = createAction(
     '[Events] Log',
