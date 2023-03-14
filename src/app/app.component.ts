@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import * as movesActions from '../app/state/moves/moves.actions';
 import * as gameActions from './state/game/game.actions';
-import * as eventsActions from '../app/state/events/events.actions';
-import * as resourcesActions from '../app/state/resources/resources.actions';
 import * as gameSelectors from './state/game/game.selector';
 
 @Component({
@@ -25,7 +23,7 @@ export class AppComponent {
 
   constructor(
     private store: Store
-  ) {}
+  ) { }
 
   restart() {
     //Expand to handle all behaviors with a single action dispatch
@@ -36,8 +34,8 @@ export class AppComponent {
 
   get nemesisAttackTimer() {
     let minutes = Math.floor(this.nemesis / 600 - this.ticks / 600);
-    let seconds = 60 - Math.floor((this.ticks % 600)/10)
-    return `${minutes}:${seconds == 60 ? "00" : seconds}` ;
+    let seconds = 60 - Math.floor((this.ticks % 600) / 10)
+    return `${minutes}:${seconds == 60 ? "00" : seconds}`;
   }
 
   ngOnInit() {

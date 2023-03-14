@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { EventsState, MovesState } from "../app.state";
+import { EventsState } from "../app.state";
 
 export const selectEvents = createFeatureSelector<EventsState>('events');
 

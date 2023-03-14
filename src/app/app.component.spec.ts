@@ -3,20 +3,18 @@ import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 import { AppComponent } from './app.component';
-import { MovesComponent } from './moves/moves.component';
-import { ResourceDisplayComponent } from './resources/resource-display/resource-display.component';
 
 @Component({
   selector: 'app-moves',
   template: '<p>Mock Moves Component</p>'
 })
-class MockMovesComponent {}
+class MockMovesComponent { }
 
 @Component({
   selector: 'app-resource-display',
   template: '<p>Mock Resource Display Component</p>'
 })
-class MockResourceDisplayComponent {}
+class MockResourceDisplayComponent { }
 
 describe('AppComponent', () => {
   beforeEach(async () => {

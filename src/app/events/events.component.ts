@@ -1,8 +1,7 @@
-import { Component } from "@angular/core";
+import { Component, ViewEncapsulation } from "@angular/core";
 import { Store } from "@ngrx/store";
 import * as eventsSelectors from '../state/events/events.selector';
 import { GameEvent } from "./event.model";
-import { ViewEncapsulation } from '@angular/core';
 
 @Component({
     selector: 'app-events',
@@ -49,9 +48,5 @@ export class EventsComponent {
     scrollEventLog() {
         var objDiv = document.getElementById("event-log");
         objDiv!.scrollTop = objDiv!.scrollHeight;
-
-        // $('body,html').animate({
-        //     scrollTop: 0
-        // }, 800);
     }
 }

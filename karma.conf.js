@@ -20,7 +20,7 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly'],
       fixWebpackSourcePaths: true
     },
-    reporters: ['mocha','coverage'],
+    reporters: ['mocha', 'coverage'],
     coverageReporter: {
       type: 'text-summary'
     },
@@ -34,8 +34,8 @@ module.exports = function (config) {
     ],
     customLaunchers: {
       ChromeHeadless: {
-          base: 'Chrome',
-          flags: ['--no-sandbox', '--headless', '--disable-gpu', '--remote-debugging-port=9222']
+        base: 'Chrome',
+        flags: ['--no-sandbox', '--headless', '--disable-gpu', '--remote-debugging-port=9222']
       }
     },
     singleRun: true

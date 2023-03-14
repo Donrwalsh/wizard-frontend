@@ -1,5 +1,4 @@
-import { ResourceAmount, ResourceBundle, ResourceRange, ResourceType } from "../resources/resources.model"
-import { GameEvent } from "../events/event.model";
+import { ResourceAmount, ResourceRange, ResourceType } from "../resources/resources.model";
 
 export var notOnCooldown: MoveCooldown = {
     onCooldown: false,
@@ -62,39 +61,39 @@ export class GameMove {
         this.type = move.type;
         this.cooldown = move.cooldown;
 
-        switch(move.type) { 
-            case MovesType.focus: { 
+        switch (move.type) {
+            case MovesType.focus: {
                 this.baseCooldown = 100;
                 this.baseOutcomes = [
                     { type: ResourceType.basicMana, lowAmount: 0, highAmount: 3 },
                     { type: ResourceType.basicScroll, lowAmount: 0, highAmount: 1 },
                 ]
-               break; 
-            } 
-            case MovesType.learn: { 
+                break;
+            }
+            case MovesType.learn: {
                 this.baseCooldown = 300;
                 this.baseOutcomes = [
                     { type: ResourceType.basicMana, amount: 5 },
                     { type: ResourceType.basicScroll, amount: 1 }
                 ]
-               break; 
+                break;
             }
-            case MovesType.cast: { 
+            case MovesType.cast: {
                 this.baseCooldown = 1000;
                 this.baseOutcomes = []
-               break; 
+                break;
             }
-            case MovesType.mission: { 
+            case MovesType.mission: {
                 this.baseCooldown = 5000;
                 this.baseOutcomes = []
-               break; 
-            } 
-            default: { 
+                break;
+            }
+            default: {
                 this.baseCooldown = 5000;
                 this.baseOutcomes = []
-               break; 
-            } 
-         } 
+                break;
+            }
+        }
     }
 
     calculateCooldown(): number {

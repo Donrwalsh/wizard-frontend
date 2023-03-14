@@ -1,12 +1,12 @@
-import { Injectable, Type } from "@angular/core";
+import { Injectable } from "@angular/core";
 import * as copy from "../copy/events";
 import { GameEvent, SystemMessageType } from "../events/event.model";
 import { GameMove } from "../moves/moves.model";
-import { ResourceAmount, ResourceBundle } from "../resources/resources.model";
+import { ResourceBundle } from "../resources/resources.model";
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class EventsService {
-    constructor() {}
+    constructor() { }
 
     createGameEvent(ticks: number, gameMove: GameMove, generates: ResourceBundle) {
         return new GameEvent(ticks, gameMove.type, generates, this.writeFocusCopy(gameMove, generates))

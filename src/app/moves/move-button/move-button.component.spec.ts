@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GameMove, initialFocus } from '../moves.model';
-
 import { MoveButtonComponent } from './move-button.component';
 
 describe('MoveButtonComponent', () => {
@@ -13,9 +12,9 @@ describe('MoveButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MoveButtonComponent ]
+      declarations: [MoveButtonComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(MoveButtonComponent);
     component = fixture.componentInstance;

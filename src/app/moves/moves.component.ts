@@ -1,10 +1,10 @@
 import { Component } from "@angular/core";
 import { Store } from "@ngrx/store";
-import * as timeSelectors from '../state/game/game.selector';
-import * as moveSelectors from '../state/moves/moves.selector';
-import { GameMove, initialFocus, Move } from "./moves.model";
-import * as actions from '../state/moves/moves.actions';
 import * as gameSelectors from '../state/game/game.selector';
+import * as timeSelectors from '../state/game/game.selector';
+import * as actions from '../state/moves/moves.actions';
+import * as moveSelectors from '../state/moves/moves.selector';
+import { GameMove } from "./moves.model";
 
 @Component({
     selector: 'app-moves',

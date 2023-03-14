@@ -4,8 +4,6 @@ import { StoreModule } from '@ngrx/store';
 import { movesReducer } from '../state/moves/moves.reducer';
 import { EventsComponent } from './events.component';
 
-
-
 @NgModule({
   declarations: [
     EventsComponent,

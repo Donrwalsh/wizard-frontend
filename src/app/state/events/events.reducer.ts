@@ -9,7 +9,7 @@ export const initialState: EventsState = {
 
 const featureReducer = createReducer(
     initialState,
-    on (gameActions.restart, () => (initialState)),
+    on(gameActions.restart, () => (initialState)),
 
     on(actions.logEvent, (state, { event }) => ({
         ...state,

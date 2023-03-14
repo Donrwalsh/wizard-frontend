@@ -7,15 +7,15 @@ export enum SystemMessageType {
 }
 
 export class GameEvent {
-    when: number; //in ticks
-    what: MovesType | SystemMessageType;
-    result: ResourceBundle | null // only for Focus currently
-    description: string
+  when: number; //in ticks
+  what: MovesType | SystemMessageType;
+  result: ResourceBundle | null // only for Focus currently
+  description: string
 
-    constructor(ticks: number, what: any , result: ResourceBundle | null, description: string) {
-        this.when = ticks;
-        this.what = what;
-        this.result = result;
-        this.description = description;
-      }
+  constructor(ticks: number, what: any, result: ResourceBundle | null, description: string) {
+    this.when = ticks;
+    this.what = what;
+    this.result = result;
+    this.description = description;
+  }
 }

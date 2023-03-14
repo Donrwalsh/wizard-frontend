@@ -1,16 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
-import { Action, Store } from '@ngrx/store';
-import { tap, exhaustMap, map, mergeMap } from 'rxjs/operators';
-import * as eventsActions from '../../state/events/events.actions';
-import * as resourcesActions from '../../state/resources/resources.actions';
-import * as timeSelectors from '../game/game.selector';
-import * as timeActions from '../game/game.actions';
-import { GameEvent } from '../../events/event.model';
-import * as movesActions from './moves.actions';
-import { GameMove } from 'src/app/moves/moves.model';
+import { Store } from '@ngrx/store';
+import { tap } from 'rxjs/operators';
 import { ChaosService } from 'src/app/services/chaos.service';
-import { Observable } from 'rxjs';
+import * as timeSelectors from '../game/game.selector';
+import * as movesActions from './moves.actions';
 
 @Injectable()
 export class MovesEffects {

@@ -1,8 +1,7 @@
 import { Action, createReducer, on } from "@ngrx/store";
-import { ResourceAmount, ResourceType } from "src/app/resources/resources.model";
 import { ResourcesState } from "../app.state";
-import * as actions from './resources.actions';
 import * as gameActions from '../game/game.actions';
+import * as actions from './resources.actions';
 
 export const initialState: ResourcesState = {
     basicMana: 0,
@@ -11,12 +10,12 @@ export const initialState: ResourcesState = {
 
 const featureReducer = createReducer(
     initialState,
-    on (gameActions.restart, () => (initialState)),
+    on(gameActions.restart, () => (initialState)),
 
     on(actions.generate, (state, { resourceBundle }) => ({
-            ...state,
-            basicMana: state.basicMana + resourceBundle.basicMana,
-            basicScrolls: state.basicScrolls + resourceBundle.basicScrolls
+        ...state,
+        basicMana: state.basicMana + resourceBundle.basicMana,
+        basicScrolls: state.basicScrolls + resourceBundle.basicScrolls
     })),
 )
 

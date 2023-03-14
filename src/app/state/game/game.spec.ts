@@ -13,7 +13,7 @@ describe('NgRx Game', () => {
         });
 
         it('has no duplicate actions', () => {
-            
+
         });
     });
 });

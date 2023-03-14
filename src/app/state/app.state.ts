@@ -1,10 +1,10 @@
 import { ActionReducerMap } from "@ngrx/store";
-import { Move } from "../moves/moves.model";
 import { GameEvent } from "../events/event.model";
+import { Move } from "../moves/moves.model";
 import { eventsReducer } from "./events/events.reducer";
+import { gameReducer } from "./game/game.reducer";
 import { movesReducer } from "./moves/moves.reducer";
 import { resourcesReducer } from "./resources/resources.reducer";
-import { gameReducer } from "./game/game.reducer";
 
 export interface EventsState {
     eventsLog: GameEvent[];

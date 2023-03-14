@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
 import { GameMove } from "../moves/moves.model";
-import { ResourceAmount, ResourceBundle } from "../resources/resources.model";
+import { ResourceBundle } from "../resources/resources.model";
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class ChaosService {
-    constructor() {}
+    constructor() { }
 
     resolveOutcomes(gameMove: GameMove): ResourceBundle {
         let bundle = {

@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore } from '@ngrx/store/testing';
-
 import { ResourceDisplayComponent } from './resource-display.component';
 
 describe('ResourceDisplayComponent', () => {
@@ -9,12 +8,12 @@ describe('ResourceDisplayComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ResourceDisplayComponent ],
+      declarations: [ResourceDisplayComponent],
       providers: [
         provideMockStore({})
       ]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ResourceDisplayComponent);
     component = fixture.componentInstance;

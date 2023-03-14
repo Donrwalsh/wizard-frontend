@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore } from '@ngrx/store/testing';
-
 import { MovesComponent } from './moves.component';
 import { GameMove } from './moves.model';
 
@@ -28,7 +27,7 @@ describe('MovesComponent', () => {
         provideMockStore({})
       ]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(MovesComponent);
     component = fixture.componentInstance;

@@ -31,7 +31,7 @@ export class EventsEffects {
                 })
             ),
         { dispatch: false }
-    )       
+    )
 
     restart$ = createEffect(
         () =>
@@ -62,5 +62,5 @@ export class EventsEffects {
         { dispatch: false }
     )
 
-    
+
 }

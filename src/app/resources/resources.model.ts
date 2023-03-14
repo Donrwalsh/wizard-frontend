@@ -17,4 +17,4 @@ export interface ResourceRange {
 export enum ResourceType {
     basicMana = "Basic Mana",
     basicScroll = "Basic Scroll"
-  }
+}
