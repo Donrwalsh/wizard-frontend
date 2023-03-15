@@ -1,42 +1,20 @@
-# Front
+# Local Development Setup
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.1.
+1. Install Node.js. I'm using LTS Version 18.15.0.
+2. You'll need npm, but that's usually included in the Node.js install. 
+3. Run >`npm install` in the root directory. This downloads dependencies.
+4. Run >`npm run start` in the root directory. This starts up the game.
+5. Game is running at `http://localhost:4200`.
 
-## Development server
+## How to Play
+You are a wizard. You awake in an unfamiliar place with little more than a fleeting memory of your once unsurpassed power. This is not the first time this has happened.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+You are being pursued. Wherever you awake there is always a nemesis that is seeking you. Hunting you. When they find you it's Game Over, so to speak, and they always find you. 
 
-## Code scaffolding
+But this time will be different. With nothing but your wits you must harness the latent power from any source that bends to your considerable will. Tap into the memories of your former selves and establish a foothold which will grow to an empire that you can direct how you see fit. 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## State of the Game
 
-## Build
+Core gameplay mechanics are still coming together. The basic outline for Game Moves, the Event Log, Nemesis Timer and Resource Inventory are functional at a basic level. The Focus Game Move hooks into everything it needs to to produce and store random amounts of resources.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-
-## My Notes
-The plan is to ultimately migrate these environment notes to a separate repo, but for now since they are sparse I'll leave them here.
-
-### Local Development
-I am using VsCode to develop this app. I haven't installed any extensions yet, but I am using the default git feature. I logged into github through the browser so now I'm able to do git operations from within VsCode. (I am used to using Sourcetree, so this is a helpful learning experience for me).
-
-I enabled format on save but have not yet defined any specific formatting rules so the whole project should be formatted based on whatever came default.
-
-### Dev Server
-I run a dev server on a Raspberry Pi. It runs Jenkins locally which was obnoxious to set up. The Jenkins install failed several times and ultimately required changing the timeout to allow for infinite time via `vi /lib/systemd/system/jenkins`. Once I did that the install went through just fine. (Prior to this I got things working on a Jenkins running on a docker image but failed to get it to be able to properly hook into the host's docker service for deployment. Since I want to ultimately deploy my app using containers, this was a no-go).
-
-So I have a pipeline job that checks my github repo every 5 minutes for updates. Upon seeing an update, it will run through the pipeline steps in the `Jenkinsfile` at the root of this project. It builds the app, then run tests (currently disabled - need to sort out headless test running) and then generates a docker image and deploys it as a container locally.
-
-This whole dev environment setup is convenient because I can always access the latest deployed version of my code on any device on my local network. I can also access Jenkins the same way, but I generally don't need to because it is configured to be operating in the shadows without intervention.
+My current focus are the Discoveries and Memories mechanics alongside the Learn Game Move. (Thinking about changing Learn to Study)
