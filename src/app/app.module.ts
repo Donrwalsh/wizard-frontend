@@ -5,6 +5,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { DiscoveriesModule } from './discoveries/discoveries.module';
 import { EventsModule } from './events/events.module';
 import { MovesModule } from './moves/moves.module';
 import { ResourcesModule } from './resources/resources.module';
@@ -16,20 +17,24 @@ import { MovesEffects } from './state/moves/moves.effects';
 import { ResourcesEffects } from './state/resources/resources.effects';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    DiscoveriesModule,
     EventsModule,
     ResourcesModule,
     MovesModule,
     StoreModule.forRoot(ROOT_REDUCERS, { metaReducers }),
-    EffectsModule.forRoot([EventsEffects, MovesEffects, ResourcesEffects, GameEffects]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
+    EffectsModule.forRoot([
+      EventsEffects,
+      MovesEffects,
+      ResourcesEffects,
+      GameEffects,
+    ]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

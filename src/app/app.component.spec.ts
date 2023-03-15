@@ -5,31 +5,41 @@ import { provideMockStore } from '@ngrx/store/testing';
 import { AppComponent } from './app.component';
 
 @Component({
-  selector: 'app-moves',
-  template: '<p>Mock Moves Component</p>'
+  selector: 'app-discoveries',
+  template: '<p>Mock Discoveries Component</p>',
 })
-class MockMovesComponent { }
+class MockDiscoveriesComponent {}
+
+@Component({
+  selector: 'app-events',
+  template: '<p>Mock Events Component</p>',
+})
+class MockEventsComponent {}
+
+@Component({
+  selector: 'app-moves',
+  template: '<p>Mock Moves Component</p>',
+})
+class MockMovesComponent {}
 
 @Component({
   selector: 'app-resource-display',
-  template: '<p>Mock Resource Display Component</p>'
+  template: '<p>Mock Resource Display Component</p>',
 })
-class MockResourceDisplayComponent { }
+class MockResourceDisplayComponent {}
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-      ],
+      imports: [RouterTestingModule],
       declarations: [
         AppComponent,
+        MockDiscoveriesComponent,
+        MockEventsComponent,
         MockResourceDisplayComponent,
-        MockMovesComponent
+        MockMovesComponent,
       ],
-      providers: [
-        provideMockStore({})
-      ]
+      providers: [provideMockStore({})],
     }).compileComponents();
   });
 
