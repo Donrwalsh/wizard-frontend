@@ -1,27 +1,30 @@
 import { createAction, props } from '@ngrx/store';
-import { GameMove, MoveCooldown } from 'src/app/moves/moves.model';
+import {
+  Move,
+  MoveCooldown,
+  MoveOutcome,
+  PossibleOutcome,
+} from 'src/app/moves/moves.model';
 import { ResourceBundle } from 'src/app/resources/resources.model';
 
-export const prepMove = createAction(
-    '[Moves] Prep',
-    props<{ gameMove: GameMove }>()
-);
-
-export const useMove = createAction(
-    '[Moves] Use',
-    props<{ gameMove: GameMove, generates: ResourceBundle }>()
+export const playerClickedMove = createAction(
+  '[Moves] Player Clicked Move',
+  props<{ move: Move }>()
 );
 
 export const putMoveOnCooldown = createAction(
-    '[Moves] Put On Cooldown',
-    props<{ gameMove: GameMove, moveCooldown: MoveCooldown }>()
+  '[Moves] Put On Cooldown',
+  props<{ move: Move; moveCooldown: MoveCooldown }>()
+);
+
+export const useMove = createAction(
+  '[Moves] Use',
+  props<{ move: Move; outcome: MoveOutcome }>()
 );
 
 export const takeMoveOffCooldown = createAction(
-    '[Moves] Take Off Cooldown',
-    props<{ gameMove: GameMove }>()
+  '[Moves] Take Off Cooldown',
+  props<{ move: Move }>()
 );
 
-export const resetAllMoves = createAction(
-    '[Moves] Reset All Moves',
-);
+export const resetAllMoves = createAction('[Moves] Reset All Moves');

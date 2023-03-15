@@ -1,15 +1,15 @@
 <div class="move-button-container" (click)="clickMove()" [ngClass]="{
-        'on-cooldown': gameMove.cooldown.onCooldown === true || !gameActive || gameMove.type != 'Focus' ,
-        'focus': gameMove.type == 'Focus',
-        'learn': gameMove.type == 'Learn',
-        'cast': gameMove.type == 'Cast',
-        'mission': gameMove.type == 'Mission'
+        'on-cooldown': move.cooldown.onCooldown === true || !gameActive || move.type != 'Focus' ,
+        'focus': move.type == 'Focus',
+        'learn': move.type == 'Learn',
+        'cast': move.type == 'Cast',
+        'mission': move.type == 'Mission'
      }">
-    <div *ngIf="(gameMove.cooldown.animation === 1 && gameMove.cooldown.onCooldown === true)"
-        [ngStyle]="{'width': gameMove.calculateCooldownPercent(ticks) + '%'}" class="move-button-progress">
+    <div *ngIf="(move.cooldown.animation === 1 && move.cooldown.onCooldown === true)"
+        [ngStyle]="{'width': this.movesService.calculateCooldownPercent(move, ticks) + '%'}" class="move-button-progress">
     </div>
-    <img *ngIf="gameMove.type == 'Focus'" class="move-image" src="/assets/moves/Focus.png" />
-    <img *ngIf="gameMove.type == 'Learn'" class="move-image" src="/assets/moves/Learn.png" />
-    <img *ngIf="gameMove.type == 'Cast'" class="move-image" src="/assets/moves/Cast.png" />
-    <img *ngIf="gameMove.type == 'Mission'" class="move-image" src="/assets/moves/Mission.png" />
+    <img *ngIf="move.type == 'Focus'" class="move-image" src="/assets/moves/Focus.png" />
+    <img *ngIf="move.type == 'Learn'" class="move-image" src="/assets/moves/Learn.png" />
+    <img *ngIf="move.type == 'Cast'" class="move-image" src="/assets/moves/Cast.png" />
+    <img *ngIf="move.type == 'Mission'" class="move-image" src="/assets/moves/Mission.png" />
 </div>

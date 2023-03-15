@@ -2,14 +2,14 @@ import { Component, Input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 import { MovesComponent } from './moves.component';
-import { GameMove } from './moves.model';
+import { Move } from './moves.model';
 
 @Component({
   selector: 'app-move-button',
-  template: '<p>Mock Move Button Component</p>'
+  template: '<p>Mock Move Button Component</p>',
 })
 class MockMoveButtonComponent {
-  @Input() gameMove!: GameMove;
+  @Input() move!: Move;
   @Input() ticks!: number;
   @Input() gameActive: boolean = false;
 }
@@ -20,14 +20,9 @@ describe('MovesComponent', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      declarations: [
-        MovesComponent,
-        MockMoveButtonComponent],
-      providers: [
-        provideMockStore({})
-      ]
-    })
-      .compileComponents();
+      declarations: [MovesComponent, MockMoveButtonComponent],
+      providers: [provideMockStore({})],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(MovesComponent);
     component = fixture.componentInstance;

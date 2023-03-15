@@ -1,75 +1,84 @@
-import { Component } from "@angular/core";
-import { Store } from "@ngrx/store";
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { MovesService } from '../services/moves.service';
 import * as gameSelectors from '../state/game/game.selector';
 import * as timeSelectors from '../state/game/game.selector';
 import * as actions from '../state/moves/moves.actions';
 import * as moveSelectors from '../state/moves/moves.selector';
-import { GameMove } from "./moves.model";
+import { Move } from './moves.model';
 
 @Component({
-    selector: 'app-moves',
-    templateUrl: './moves.component.html',
-    styleUrls: ['./moves.component.sass']
+  selector: 'app-moves',
+  templateUrl: './moves.component.html',
+  styleUrls: ['./moves.component.sass'],
 })
 export class MovesComponent {
-    ticks$ = this.store.select(timeSelectors.selectTicks);
-    ticks: number = 0;
+  ticks$ = this.store.select(timeSelectors.selectTicks);
+  ticks: number = 0;
 
-    focus$ = this.store.select(moveSelectors.selectFocus);
-    focus!: GameMove;
+  focus$ = this.store.select(moveSelectors.selectFocus);
+  focus!: Move;
 
-    learn$ = this.store.select(moveSelectors.selectLearn);
-    learn!: GameMove;
+  learn$ = this.store.select(moveSelectors.selectLearn);
+  learn!: Move;
 
-    cast$ = this.store.select(moveSelectors.selectCast);
-    cast!: GameMove;
+  cast$ = this.store.select(moveSelectors.selectCast);
+  cast!: Move;
 
-    mission$ = this.store.select(moveSelectors.selectMission);
-    mission!: GameMove;
+  mission$ = this.store.select(moveSelectors.selectMission);
+  mission!: Move;
 
-    gameActive$ = this.store.select(gameSelectors.selectActive);
-    gameActive: boolean = false;
+  gameActive$ = this.store.select(gameSelectors.selectActive);
+  gameActive: boolean = false;
 
-    constructor(
-        private store: Store,
-    ) {
+  constructor(private store: Store) {}
+
+  ngOnInit() {
+    this.ticks$.subscribe((ticks) => {
+      this.ticks = ticks;
+      let movesComingOffCooldown = [
+        this.focus,
+        this.learn,
+        this.cast,
+        this.mission,
+      ].filter(
+        (move) =>
+          move?.cooldown.onCooldown === true &&
+          move.cooldown.ticksFinish == this.ticks
+      );
+      movesComingOffCooldown.forEach((move) =>
+        this.store.dispatch(actions.takeMoveOffCooldown({ move }))
+      );
+    });
+
+    this.gameActive$.subscribe((active) => {
+      this.gameActive = active;
+    });
+
+    this.focus$.subscribe((focus) => {
+      this.focus = focus;
+    });
+
+    this.learn$.subscribe((learn) => {
+      this.learn = learn;
+    });
+
+    this.cast$.subscribe((cast) => {
+      this.cast = cast;
+    });
+
+    this.mission$.subscribe((mission) => {
+      this.mission = mission;
+    });
+  }
+
+  canUse(move: Move): boolean {
+    return this.gameActive && !move.cooldown.onCooldown;
+  }
+
+  useMove(event: Move) {
+    if (this.canUse(event)) {
+      this.store.dispatch(actions.playerClickedMove({ move: event }));
     }
-
-    ngOnInit() {
-        this.ticks$.subscribe(ticks => {
-            this.ticks = ticks;
-            let gameMoves = [this.focus, this.learn, this.cast, this.mission].filter(gameMove => gameMove?.cooldown.onCooldown === true && gameMove.cooldown.ticksFinish == this.ticks);
-            gameMoves.forEach((gameMove) => this.store.dispatch(actions.takeMoveOffCooldown({ gameMove })));
-        });
-
-        this.gameActive$.subscribe(active => {
-            this.gameActive = active;
-        });
-
-        this.focus$.subscribe(focus => {
-            this.focus = new GameMove(focus);
-        });
-
-        this.learn$.subscribe(learn => {
-            this.learn = new GameMove(learn);
-        });
-
-        this.cast$.subscribe(cast => {
-            this.cast = new GameMove(cast);
-        });
-
-        this.mission$.subscribe(mission => {
-            this.mission = new GameMove(mission);
-        });
-    }
-
-    canUse(gameMove: GameMove): boolean {
-        return this.gameActive && !gameMove.cooldown.onCooldown;
-    }
-
-    useMove(event: GameMove) {
-        if (this.canUse(event)) {
-            this.store.dispatch(actions.prepMove({ gameMove: event }));
-        }
-    }
+  }
 }
