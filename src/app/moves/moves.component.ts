@@ -2,10 +2,14 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { MovesService } from '../services/moves.service';
 import * as gameSelectors from '../state/game/game.selector';
+import * as skillsSelectors from '../state/skills/skills.selector';
 import * as timeSelectors from '../state/game/game.selector';
 import * as actions from '../state/moves/moves.actions';
 import * as moveSelectors from '../state/moves/moves.selector';
+import * as resourcesSelectors from '../state/resources/resources.selector';
 import { Move } from './moves.model';
+import { Skill } from '../skills/skills.model';
+import { ResourceBundle } from '../resources/resources.model';
 
 @Component({
   selector: 'app-moves',
@@ -30,6 +34,12 @@ export class MovesComponent {
 
   gameActive$ = this.store.select(gameSelectors.selectActive);
   gameActive: boolean = false;
+
+  discoveredSkills$ = this.store.select(skillsSelectors.selectDiscoveredSkills);
+  discoveredSkills!: Skill[];
+
+  resources$ = this.store.select(resourcesSelectors.selectResources);
+  resources!: ResourceBundle;
 
   constructor(private store: Store) {}
 
@@ -69,6 +79,14 @@ export class MovesComponent {
 
     this.mission$.subscribe((mission) => {
       this.mission = mission;
+    });
+
+    this.discoveredSkills$.subscribe((discoveredSkills) => {
+      this.discoveredSkills = discoveredSkills;
+    });
+
+    this.resources$.subscribe((resources) => {
+      this.resources = resources;
     });
   }
 

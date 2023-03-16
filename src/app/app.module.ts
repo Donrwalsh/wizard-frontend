@@ -5,7 +5,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DiscoveriesModule } from './discoveries/discoveries.module';
+import { DiscoveriesModule } from './skills/skills.module';
 import { EventsModule } from './events/events.module';
 import { MovesModule } from './moves/moves.module';
 import { ResourcesModule } from './resources/resources.module';

@@ -6,12 +6,17 @@ import {
   MovesData,
   MovesType,
 } from '../moves/moves.model';
-import { ResourceType } from '../resources/resources.model';
+import { ResourceBundle, ResourceType } from '../resources/resources.model';
+import { Skill } from '../skills/skills.model';
 import { ChaosService } from './chaos.service';
+import { SkillsService } from './skills.service';
 
 @Injectable({ providedIn: 'root' })
 export class MovesService {
-  constructor(private chaosService: ChaosService) {}
+  constructor(
+    private chaosService: ChaosService,
+    private skillsService: SkillsService
+  ) {}
 
   movesData: MovesData[] = [
     {
@@ -38,6 +43,13 @@ export class MovesService {
       baseOutcomes: [],
     },
   ];
+
+  canAnythingBeLearned(discoveredSkills: Skill[], resources: ResourceBundle) {
+    return this.skillsService.canSomeSkillBeLearned(
+      discoveredSkills,
+      resources
+    );
+  }
 
   calculateCooldown(move: Move) {
     // do some calculation
@@ -81,6 +93,7 @@ export class MovesService {
             ? this.chaosService.roll(outcome.lowAmount, outcome.highAmount)
             : 0;
       }
+      // Discovery happens here.
     });
     return { resource: bundle };
   }

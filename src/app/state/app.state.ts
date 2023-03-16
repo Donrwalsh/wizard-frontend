@@ -1,15 +1,15 @@
 import { ActionReducerMap } from '@ngrx/store';
 import { GameEvent } from '../events/event.model';
 import { Move } from '../moves/moves.model';
-import { Discovery } from '../discoveries/discoveries.model';
-import { discoveriesReducer } from './discoveries/discoveries.reducer';
+import { Skill } from '../skills/skills.model';
+import { skillsReducer } from './skills/skills.reducer';
 import { eventsReducer } from './events/events.reducer';
 import { gameReducer } from './game/game.reducer';
 import { movesReducer } from './moves/moves.reducer';
 import { resourcesReducer } from './resources/resources.reducer';
 
-export interface DiscoveriesState {
-  discoveries: Discovery[];
+export interface SkillsState {
+  discoveredSkills: Skill[];
 }
 
 export interface EventsState {
@@ -35,7 +35,7 @@ export interface MovesState {
 }
 
 export interface AppState {
-  discoveries: DiscoveriesState;
+  skills: SkillsState;
   events: EventsState;
   game: GameState;
   moves: MovesState;
@@ -43,7 +43,7 @@ export interface AppState {
 }
 
 export const ROOT_REDUCERS: ActionReducerMap<AppState> = {
-  discoveries: discoveriesReducer,
+  skills: skillsReducer,
   events: eventsReducer,
   game: gameReducer,
   moves: movesReducer,

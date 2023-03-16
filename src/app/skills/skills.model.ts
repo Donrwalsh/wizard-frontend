@@ -1,21 +1,22 @@
 import { ResourceBundle } from 'src/app/resources/resources.model';
 
-export interface Discovery {
+export interface Skill {
   name: string;
-  //   tree: DiscoveryTree;
+  //   tree: SkillTree;
   //   cost: Partial<ResourceBundle>;
   //   prereq: string[];
   discovered: boolean;
   unlocked: boolean;
 }
 
-export enum DiscoveryTree {
+export enum SkillTree {
   wizardry = 'Wizardry',
 }
 
-export interface DiscoveryData {
+export interface SkillData {
   name: string;
-  tree: DiscoveryTree;
-  cost: Partial<ResourceBundle>;
+  tree: SkillTree;
+  discoveryCost: Partial<ResourceBundle>;
+  unlockCost: Partial<ResourceBundle>;
   prereq: string[];
 }

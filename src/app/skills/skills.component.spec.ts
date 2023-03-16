@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore } from '@ngrx/store/testing';
-import { DiscoveriesService } from '../services/discoveries.service';
-import { DiscoveriesComponent } from './discoveries.component';
-import { DiscoveryData } from './discoveries.model';
+import { DiscoveriesService } from '../services/skills.service';
+import { DiscoveriesComponent } from './skills.component';
+import { SkillData } from './skills.model';
 
-let mockEligibleDiscoveries = [{} as DiscoveryData];
+let mockEligibleDiscoveries = [{} as SkillData];
 
 class MockDiscoveriesService {
   getEligibleDiscoveries(unlockedDiscoveries: string[]) {
