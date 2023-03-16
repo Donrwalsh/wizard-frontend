@@ -7,7 +7,7 @@ import {
   MovesType,
 } from '../moves/moves.model';
 import { ResourceBundle, ResourceType } from '../resources/resources.model';
-import { Skill } from '../skills/skills.model';
+import { DiscoveryType, Skill } from '../skills/skills.model';
 import { ChaosService } from './chaos.service';
 import { SkillsService } from './skills.service';
 
@@ -30,7 +30,7 @@ export class MovesService {
     {
       name: MovesType.learn,
       baseCooldown: 300,
-      baseOutcomes: [],
+      baseOutcomes: [{ discoveryType: DiscoveryType.basic }],
     },
     {
       name: MovesType.cast,
@@ -72,30 +72,36 @@ export class MovesService {
   }
 
   makeMoveOutcome(move: Move): MoveOutcome {
-    let bundle = {
-      basicMana: 0,
-      basicScrolls: 0,
+    let moveOutcome = {
+      resource: {
+        basicMana: 0,
+        basicScrolls: 0,
+      },
+      discovery: null,
     };
+
     this.calculateOutcomes(move).forEach((outcome) => {
       if ('amount' in outcome) {
-        bundle.basicMana +=
+        moveOutcome.resource.basicMana +=
           outcome.type == ResourceType.basicMana ? outcome.amount : 0;
-        bundle.basicScrolls +=
+        moveOutcome.resource.basicScrolls +=
           outcome.type == ResourceType.basicScrolls ? outcome.amount : 0;
       }
       if ('lowAmount' in outcome) {
-        bundle.basicMana +=
+        moveOutcome.resource.basicMana +=
           outcome.type == ResourceType.basicMana
             ? this.chaosService.roll(outcome.lowAmount, outcome.highAmount)
             : 0;
-        bundle.basicScrolls +=
+        moveOutcome.resource.basicScrolls +=
           outcome.type == ResourceType.basicScrolls
             ? this.chaosService.roll(outcome.lowAmount, outcome.highAmount)
             : 0;
       }
-      // Discovery happens here.
+      if ('discoveryType' in outcome && outcome.discoveryType == 'basic') {
+        // Discover something here. Should just set moveOutcome.discovery to the string value name of the discovered skill
+      }
     });
-    return { resource: bundle };
+    return moveOutcome;
   }
 
   calculateCooldownPercent(move: Move, ticks: number): number {

@@ -5,8 +5,8 @@ import { provideMockStore } from '@ngrx/store/testing';
 import { AppComponent } from './app.component';
 
 @Component({
-  selector: 'app-discoveries',
-  template: '<p>Mock Discoveries Component</p>',
+  selector: 'app-skills',
+  template: '<p>Mock Skills Component</p>',
 })
 class MockDiscoveriesComponent {}
 

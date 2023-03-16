@@ -4,6 +4,7 @@ import {
   ResourceRange,
   ResourceType,
 } from '../resources/resources.model';
+import { DiscoveryType } from '../skills/skills.model';
 
 export interface Move {
   type: MovesType;
@@ -33,7 +34,7 @@ export interface MovesData {
 
 export interface MoveOutcome {
   resource: ResourceBundle;
-  // discovery?: ~something
+  discovery: string | null;
 }
 
 export interface MoveCooldown {
@@ -43,4 +44,8 @@ export interface MoveCooldown {
   animation: number | null;
 }
 
-export type PossibleOutcome = ResourceAmount | ResourceRange; // expands to cover all possible results of move usage.
+export type PossibleOutcome = ResourceAmount | ResourceRange | Discovery; // expands to cover all possible results of move usage.
+
+export interface Discovery {
+  discoveryType: DiscoveryType;
+}

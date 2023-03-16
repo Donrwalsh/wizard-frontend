@@ -20,3 +20,7 @@ export interface SkillData {
   unlockCost: Partial<ResourceBundle>;
   prereq: string[];
 }
+
+export enum DiscoveryType {
+  basic = 'basic',
+}

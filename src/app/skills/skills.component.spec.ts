@@ -1,42 +1,54 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore } from '@ngrx/store/testing';
-import { DiscoveriesService } from '../services/skills.service';
-import { DiscoveriesComponent } from './skills.component';
-import { SkillData } from './skills.model';
+import { ResourceBundle } from '../resources/resources.model';
+import { SkillsService } from '../services/skills.service';
+import { SkillsComponent } from './skills.component';
+import { Skill, SkillData } from './skills.model';
 
-let mockEligibleDiscoveries = [{} as SkillData];
+let mockSkillData = [{} as SkillData];
 
-class MockDiscoveriesService {
-  getEligibleDiscoveries(unlockedDiscoveries: string[]) {
-    return mockEligibleDiscoveries;
+class MockSkillsService {
+  getUndiscoveredSkillsData(discoveredSkills: Skill[]) {
+    return mockSkillData;
+  }
+  getDiscoveryEligibleSkillsData(
+    discoveredSkills: Skill[],
+    undiscoveredSkillsData: SkillData[]
+  ) {
+    return mockSkillData;
+  }
+  getAffordableSkills(
+    discoveryEligibleSkills: SkillData[],
+    resources: ResourceBundle
+  ) {
+    return mockSkillData;
+  }
+  canSomeSkillBeLearned(discoveredSkills: Skill[], resources: ResourceBundle) {
+    return true;
   }
 }
 
-describe('DiscoveriesComponent', () => {
-  let component: DiscoveriesComponent;
-  let fixture: ComponentFixture<DiscoveriesComponent>;
-  let discoveriesService: DiscoveriesService;
+describe('SkillsComponent', () => {
+  let component: SkillsComponent;
+  let fixture: ComponentFixture<SkillsComponent>;
+  let discoveriesService: SkillsService;
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      declarations: [DiscoveriesComponent],
+      declarations: [SkillsComponent],
       providers: [
         provideMockStore({}),
-        { provide: DiscoveriesService, useClass: MockDiscoveriesService },
+        { provide: SkillsService, useClass: MockSkillsService },
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(DiscoveriesComponent);
+    fixture = TestBed.createComponent(SkillsComponent);
     component = fixture.componentInstance;
-    discoveriesService = TestBed.inject(DiscoveriesService);
+    discoveriesService = TestBed.inject(SkillsService);
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    const spy = spyOn(
-      discoveriesService,
-      'getEligibleDiscoveries'
-    ).and.callThrough();
     expect(component).toBeTruthy();
   });
 });
