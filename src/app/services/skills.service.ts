@@ -8,20 +8,36 @@ export class SkillsService {
 
   skillData: SkillData[] = [
     {
+      name: 'Enhanced Focus',
+      tree: SkillTree.wizardry,
+      treePosition: 1,
+      discoveryCost: { basicScrolls: 2 },
+      unlockCost: { basicMana: 10 },
+      prereq: ['Conjuration School'],
+    },
+    {
       name: 'Conjuration School',
       tree: SkillTree.wizardry,
+      treePosition: 2,
       discoveryCost: { basicScrolls: 1 },
       unlockCost: { basicMana: 10 },
       prereq: [],
     },
     {
-      name: 'Enhanced Focus',
+      name: 'Enhanced Learn',
       tree: SkillTree.wizardry,
-      discoveryCost: { basicScrolls: 2 },
-      unlockCost: { basicMana: 10 },
+      treePosition: 3,
+      discoveryCost: { basicScrolls: 5 },
+      unlockCost: { basicMana: 50 },
       prereq: ['Conjuration School'],
     },
   ];
+
+  getWizardrySkillData(): SkillData[] {
+    return this.skillData.filter(
+      (skillData) => skillData.tree == SkillTree.wizardry
+    );
+  }
 
   getUndiscoveredSkillsData(discoveredSkills: Skill[]): SkillData[] {
     return discoveredSkills.length > 0

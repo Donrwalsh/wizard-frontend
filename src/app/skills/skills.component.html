@@ -1,15 +1,14 @@
-<p>Discoveries</p>
-
+<p>Diagnostic Skill Content:</p>
 You have not yet discovered:  {{listOfUndiscoveredSkills() | json}}
-
 <br />
 <br />
-
 Of those, these skills are eligible to be discovered: {{listOfEligibleToDiscoverSkills() | json}}
-
 <br />
 <br />
-
 Of those, these skills are affordable: {{listOfDiscoverableAndAffordableSkills() | json }}
-
-<!-- Of those, you can afford:  -->
+<br />
+<br />
+Wizardry Tree: {{skillsService.getWizardrySkillData() | json}}
+<br />
+<br />
+Trees that player knows about (hardcoded as empty atm): {{ [] | json}} 

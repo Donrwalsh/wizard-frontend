@@ -19,7 +19,7 @@ export class SkillsComponent {
   resources$ = this.store.select(resourcesSelectors.selectResources);
   resources!: ResourceBundle;
 
-  constructor(private store: Store, private skillsService: SkillsService) {}
+  constructor(private store: Store, protected skillsService: SkillsService) {}
 
   ngOnInit() {
     this.discoveredSkills$.subscribe((discoveredSkills) => {

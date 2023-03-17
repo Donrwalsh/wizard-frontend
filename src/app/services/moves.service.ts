@@ -71,8 +71,12 @@ export class MovesService {
     return cooldown;
   }
 
-  makeMoveOutcome(move: Move): MoveOutcome {
-    let moveOutcome = {
+  makeMoveOutcome(
+    move: Move,
+    resources: ResourceBundle,
+    discoveredSkills: Skill[]
+  ): MoveOutcome {
+    let moveOutcome: MoveOutcome = {
       resource: {
         basicMana: 0,
         basicScrolls: 0,
@@ -98,7 +102,21 @@ export class MovesService {
             : 0;
       }
       if ('discoveryType' in outcome && outcome.discoveryType == 'basic') {
-        // Discover something here. Should just set moveOutcome.discovery to the string value name of the discovered skill
+        //lmao this should be simpler
+        let learnableSkills = this.skillsService.getAffordableSkills(
+          this.skillsService.getDiscoveryEligibleSkillsData(
+            discoveredSkills,
+            this.skillsService.getUndiscoveredSkillsData(discoveredSkills)
+          ),
+          resources
+        );
+        let discoveredSkill = this.chaosService.selectRandom(learnableSkills);
+
+        moveOutcome.resource.basicMana -=
+          discoveredSkill.discoveryCost.basicMana || 0;
+        moveOutcome.resource.basicScrolls -=
+          discoveredSkill.discoveryCost.basicScrolls || 0;
+        moveOutcome.discovery = discoveredSkill.name;
       }
     });
     return moveOutcome;

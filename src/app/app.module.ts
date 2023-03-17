@@ -15,6 +15,7 @@ import { GameEffects } from './state/game/game.effects';
 import { metaReducers } from './state/meta.reducer';
 import { MovesEffects } from './state/moves/moves.effects';
 import { ResourcesEffects } from './state/resources/resources.effects';
+import { SkillsEffects } from './state/skills/skills.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,6 +32,7 @@ import { ResourcesEffects } from './state/resources/resources.effects';
       MovesEffects,
       ResourcesEffects,
       GameEffects,
+      SkillsEffects,
     ]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],

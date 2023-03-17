@@ -16,6 +16,7 @@ export enum SkillTree {
 export interface SkillData {
   name: string;
   tree: SkillTree;
+  treePosition: number;
   discoveryCost: Partial<ResourceBundle>;
   unlockCost: Partial<ResourceBundle>;
   prereq: string[];

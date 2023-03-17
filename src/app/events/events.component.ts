@@ -43,6 +43,10 @@ export class EventsComponent {
         "<img class='move-icon' src='/assets/moves/Focus.png' />"
       )
       .replace(
+        '{learn}',
+        "<img class='move-icon' src='/assets/moves/Learn.png' />"
+      )
+      .replace(
         '{basic mana}',
         "<img class='resource-icon' src='/assets/resources/Basic Mana.PNG' />"
       )

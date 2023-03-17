@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as copy from '../copy/events';
 import { GameEvent, SystemMessageType } from '../events/event.model';
-import { Move, MoveOutcome } from '../moves/moves.model';
+import { Move, MoveOutcome, MovesType } from '../moves/moves.model';
 import { ResourceBundle } from '../resources/resources.model';
 import { MovesService } from './moves.service';
 
@@ -14,8 +14,32 @@ export class EventsService {
       ticks,
       move.type,
       outcome.resource,
-      this.writeFocusCopy(move, outcome.resource)
+      this.writeMoveCopy(move, outcome)
     );
+  }
+
+  writeMoveCopy(move: Move, outcome: MoveOutcome): string {
+    switch (move.type) {
+      case MovesType.focus: {
+        return this.writeFocusCopy(move, outcome.resource);
+      }
+      case MovesType.learn: {
+        return this.writeLearnCopy(move, outcome);
+      }
+      default: {
+        return 'This should never be seen';
+      }
+    }
+  }
+
+  writeLearnCopy(move: Move, outcome: MoveOutcome): string {
+    let output = 'You Learn {learn} from ';
+    if (outcome.resource.basicScrolls < 0) {
+      output += `${Math.abs(outcome.resource.basicScrolls)} {basic scrolls} `;
+    }
+    output += `discovering the ${outcome.discovery} `;
+    output += outcome.discovery?.includes('School') ? `of Magic!` : `spell!`;
+    return output;
   }
 
   writeFocusCopy(move: Move, generates: ResourceBundle): string {
