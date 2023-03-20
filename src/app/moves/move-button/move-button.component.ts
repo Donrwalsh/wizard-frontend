@@ -16,11 +16,12 @@ export class MoveButtonComponent {
   @Input() discoveredSkills!: Skill[]; // this seems excessive
   @Input() resources!: ResourceBundle;
 
-  @Output() moveButtonEvent = new EventEmitter<Move>();
+  @Output() moveButtonClick = new EventEmitter<Move>();
+  @Output() moveButtonHover = new EventEmitter<Move>();
 
   clickMove() {
     if (this.move.type == MovesType.focus) {
-      this.moveButtonEvent.emit(this.move);
+      this.moveButtonClick.emit(this.move);
     } else if (this.move.type == MovesType.learn) {
       if (
         this.movesService.canAnythingBeLearned(
@@ -28,9 +29,13 @@ export class MoveButtonComponent {
           this.resources
         )
       ) {
-        this.moveButtonEvent.emit(this.move);
+        this.moveButtonClick.emit(this.move);
       }
     }
+  }
+
+  onMouseEnter() {
+    this.moveButtonHover.emit(this.move);
   }
 
   constructor(protected movesService: MovesService) {}

@@ -1,15 +1,27 @@
-<div class="move-button-container" (click)="clickMove()" [ngClass]="{
-        'on-cooldown': move.cooldown.onCooldown === true || !gameActive || move.type == 'Cast' || move.type == 'Mission' || move.type == 'Learn' && !movesService.canAnythingBeLearned(discoveredSkills, resources),
-        'focus': move.type == 'Focus',
-        'learn': move.type == 'Learn',
-        'cast': move.type == 'Cast',
-        'mission': move.type == 'Mission'
-     }">
-    <div *ngIf="(move.cooldown.animation === 1 && move.cooldown.onCooldown === true)"
-        [ngStyle]="{'width': movesService.calculateCooldownPercent(move, ticks) + '%'}" class="move-button-progress">
-    </div>
-    <img *ngIf="move.type == 'Focus'" class="move-image" src="/assets/moves/Focus.png" />
-    <img *ngIf="move.type == 'Learn'" class="move-image" src="/assets/moves/Learn.png" />
-    <img *ngIf="move.type == 'Cast'" class="move-image" src="/assets/moves/Cast.png" />
-    <img *ngIf="move.type == 'Mission'" class="move-image" src="/assets/moves/Mission.png" />
+<div
+  class="move-button-container"
+  (click)="clickMove()"
+  (mouseenter)="onMouseEnter()"
+  [ngClass]="{
+    'on-cooldown':
+      move.cooldown.onCooldown === true ||
+      !gameActive ||
+      move.type == 'Cast' ||
+      move.type == 'Mission' ||
+      (move.type == 'Learn' &&
+        !movesService.canAnythingBeLearned(discoveredSkills, resources)),
+    focus: move.type == 'Focus',
+    learn: move.type == 'Learn',
+    cast: move.type == 'Cast',
+    mission: move.type == 'Mission'
+  }"
+>
+  <div
+    *ngIf="move.cooldown.animation === 1 && move.cooldown.onCooldown === true"
+    [ngStyle]="{
+      width: movesService.calculateCooldownPercent(move, ticks) + '%'
+    }"
+    class="move-button-progress"
+  ></div>
+  <img class="move-image" src="{{ movesService.getImage(move.type) }}" />
 </div>

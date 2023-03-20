@@ -30,6 +30,7 @@ export interface MovesData {
   name: string;
   baseCooldown: number;
   baseOutcomes: PossibleOutcome[];
+  image: string;
 }
 
 export interface MoveOutcome {

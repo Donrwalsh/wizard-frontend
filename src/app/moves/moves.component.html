@@ -1,13 +1,42 @@
 <br />
+<div id="move-panel">
+  <app-move-button
+    [move]="focus"
+    [ticks]="ticks"
+    [gameActive]="gameActive"
+    [discoveredSkills]="discoveredSkills"
+    [resources]="resources"
+    (moveButtonClick)="useMove($event)"
+    (moveButtonHover)="infoSelect($event)"
+  ></app-move-button>
 
-<app-move-button [move]="focus" [ticks]="ticks" [gameActive]="gameActive" [discoveredSkills]="discoveredSkills" [resources]="resources"
-    (moveButtonEvent)="useMove($event)"></app-move-button>
+  <app-move-button
+    [move]="learn"
+    [ticks]="ticks"
+    [gameActive]="gameActive"
+    [discoveredSkills]="discoveredSkills"
+    [resources]="resources"
+    (moveButtonClick)="useMove($event)"
+    (moveButtonHover)="infoSelect($event)"
+  ></app-move-button>
 
-<app-move-button [move]="learn" [ticks]="ticks" [gameActive]="gameActive" [discoveredSkills]="discoveredSkills" [resources]="resources"
-    (moveButtonEvent)="useMove($event)"></app-move-button>
+  <app-move-button
+    [move]="cast"
+    [ticks]="ticks"
+    [gameActive]="gameActive"
+    [discoveredSkills]="discoveredSkills"
+    [resources]="resources"
+    (moveButtonClick)="useMove($event)"
+    (moveButtonHover)="infoSelect($event)"
+  ></app-move-button>
 
-<app-move-button [move]="cast" [ticks]="ticks" [gameActive]="gameActive" [discoveredSkills]="discoveredSkills" [resources]="resources"
-    (moveButtonEvent)="useMove($event)"></app-move-button>
-
-<app-move-button [move]="mission" [ticks]="ticks" [gameActive]="gameActive" [discoveredSkills]="discoveredSkills" [resources]="resources"
-    (moveButtonEvent)="useMove($event)"></app-move-button>
+  <app-move-button
+    [move]="mission"
+    [ticks]="ticks"
+    [gameActive]="gameActive"
+    [discoveredSkills]="discoveredSkills"
+    [resources]="resources"
+    (moveButtonClick)="useMove($event)"
+    (moveButtonHover)="infoSelect($event)"
+  ></app-move-button>
+</div>

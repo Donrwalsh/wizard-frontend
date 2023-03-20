@@ -1,7 +1,9 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { MovesService } from '../services/moves.service';
 import * as eventsSelectors from '../state/events/events.selector';
 import { GameEvent } from './event.model';
+import * as icons from '../copy/icons';
 
 @Component({
   selector: 'app-events',
@@ -13,7 +15,7 @@ export class EventsComponent {
   eventLog$ = this.store.select(eventsSelectors.selectEventLog);
   eventLog!: GameEvent[];
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private movesService: MovesService) {}
 
   ngOnInit() {
     this.eventLog$.subscribe((eventLog) => {
@@ -23,7 +25,7 @@ export class EventsComponent {
   }
 
   formatEvent(event: GameEvent) {
-    return `${this.formatTime(event.when)}: ${this.parseEventDescription(
+    return `${this.formatTime(event.when)}: ${icons.parseText(
       event.description
     )}`;
   }
@@ -37,23 +39,7 @@ export class EventsComponent {
   }
 
   parseEventDescription(description: string) {
-    return description
-      .replace(
-        '{focus}',
-        "<img class='move-icon' src='/assets/moves/Focus.png' />"
-      )
-      .replace(
-        '{learn}',
-        "<img class='move-icon' src='/assets/moves/Learn.png' />"
-      )
-      .replace(
-        '{basic mana}',
-        "<img class='resource-icon' src='/assets/resources/Basic Mana.PNG' />"
-      )
-      .replace(
-        '{basic scrolls}',
-        "<img class='resource-icon' src='/assets/resources/Basic Scroll.png' />"
-      );
+    return icons.parseText(description);
   }
 
   scrollEventLog() {

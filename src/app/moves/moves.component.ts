@@ -5,6 +5,7 @@ import * as gameSelectors from '../state/game/game.selector';
 import * as skillsSelectors from '../state/skills/skills.selector';
 import * as timeSelectors from '../state/game/game.selector';
 import * as actions from '../state/moves/moves.actions';
+import * as infoActions from '../state/info/info.actions';
 import * as moveSelectors from '../state/moves/moves.selector';
 import * as resourcesSelectors from '../state/resources/resources.selector';
 import { Move } from './moves.model';
@@ -98,5 +99,9 @@ export class MovesComponent {
     if (this.canUse(event)) {
       this.store.dispatch(actions.playerClickedMove({ move: event }));
     }
+  }
+
+  infoSelect(event: Move) {
+    this.store.dispatch(infoActions.showMoveInfo({ move: event }));
   }
 }

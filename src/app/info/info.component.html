@@ -1,0 +1,28 @@
+<div id="info-panel">
+  <div *ngIf="selected != null; else noneSelected">
+    <div class="move-container" *ngIf="typeSelected == 'Move'">
+      <div class="move-header">
+        <img
+          class="info-icon"
+          src="{{ movesService.getImage(selected.type) }}"
+        />
+        <span class="move-name">{{ selected.type }}</span>
+      </div>
+      <div class="move-content">
+        <br />
+
+        <span class="move-type">(Move)</span>
+
+        <span class="move-cooldown"
+          >Cooldown: {{ movesService.getDisplayCooldown(selected) }}</span
+        >
+
+        <p [innerHtml]="movesService.getInfoDescription(selected)"></p>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noneSelected>
+    <p>Nothing Selected</p>
+  </ng-template>
+</div>

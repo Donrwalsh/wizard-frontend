@@ -16,6 +16,7 @@ import { metaReducers } from './state/meta.reducer';
 import { MovesEffects } from './state/moves/moves.effects';
 import { ResourcesEffects } from './state/resources/resources.effects';
 import { SkillsEffects } from './state/skills/skills.effects';
+import { InfoModule } from './info/info.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +27,7 @@ import { SkillsEffects } from './state/skills/skills.effects';
     EventsModule,
     ResourcesModule,
     MovesModule,
+    InfoModule,
     StoreModule.forRoot(ROOT_REDUCERS, { metaReducers }),
     EffectsModule.forRoot([
       EventsEffects,

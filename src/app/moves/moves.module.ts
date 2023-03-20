@@ -6,16 +6,8 @@ import { MoveButtonComponent } from './move-button/move-button.component';
 import { MovesComponent } from './moves.component';
 
 @NgModule({
-  declarations: [
-    MovesComponent,
-    MoveButtonComponent
-  ],
-  imports: [
-    CommonModule,
-    StoreModule.forFeature('moves', movesReducer),
-  ],
-  exports: [
-    MovesComponent,
-  ]
+  declarations: [MovesComponent, MoveButtonComponent],
+  imports: [CommonModule, StoreModule.forFeature('moves', movesReducer)],
+  exports: [MovesComponent],
 })
-export class MovesModule { }
+export class MovesModule {}
