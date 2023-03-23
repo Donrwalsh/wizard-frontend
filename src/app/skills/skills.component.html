@@ -12,3 +12,22 @@ Wizardry Tree: {{skillsService.getWizardrySkillData() | json}}
 <br />
 <br />
 Trees that player knows about (hardcoded as empty atm): {{ [] | json}}  -->
+
+<div id="skills-panel">
+  <div id="wizardry-tree" *ngIf="visibleSkillTree == 'Wizardry'">
+    <app-skill-node
+      *ngFor="let i of nodeIndexArray"
+      [position]="i"
+      [skillData]="skillDataByTreePosition(i)"
+      [discovered]="isSkillDiscoveredByTreePosition(i)"
+      [unlocked]="isSkillUnlockedByTreePosition(i)"
+      (skillNodeHover)="infoSelect($event)"
+    ></app-skill-node>
+    <!-- 
+    {{ visibleSkillTree }}
+    <br />
+    {{ visibleSkills | json }}
+    <br />
+    {{ discoveredSkills | json }} -->
+  </div>
+</div>

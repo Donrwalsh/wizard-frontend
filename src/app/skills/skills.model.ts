@@ -20,6 +20,7 @@ export interface SkillData {
   discoveryCost: Partial<ResourceBundle>;
   unlockCost: Partial<ResourceBundle>;
   prereq: string[];
+  image: string;
 }
 
 export enum DiscoveryType {

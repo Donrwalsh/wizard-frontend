@@ -1,23 +1,48 @@
 <div id="info-panel">
   <div *ngIf="selected != null; else noneSelected">
-    <div class="move-container" *ngIf="typeSelected == 'Move'">
-      <div class="move-header">
+    <div class="info-container" *ngIf="typeSelected == 'Move'">
+      <div class="info-header">
         <img
           class="info-icon"
-          src="{{ movesService.getImage(selected.type) }}"
+          src="{{ movesService.getImage(selectedAsMove().type) }}"
         />
-        <span class="move-name">{{ selected.type }}</span>
+        <span class="info-name">{{ selectedAsMove().type }}</span>
       </div>
-      <div class="move-content">
+      <div class="info-content">
         <br />
 
-        <span class="move-type">(Move)</span>
+        <span class="info-type">(Move)</span>
 
-        <span class="move-cooldown"
-          >Cooldown: {{ movesService.getDisplayCooldown(selected) }}</span
+        <span class="info-cooldown"
+          >Cooldown:
+          {{ movesService.getDisplayCooldown(selectedAsMove()) }}</span
         >
 
-        <p [innerHtml]="movesService.getInfoDescription(selected)"></p>
+        <p [innerHtml]="movesService.getInfoDescription(selectedAsMove())"></p>
+      </div>
+    </div>
+    <div class="info-container" *ngIf="typeSelected == 'Skill'">
+      <div class="info-header">
+        <img
+          class="info-icon"
+          src="{{ skillsService.getImageIfDiscovered(selectedAsSkill()) }}"
+        />
+        <span class="info-name">{{
+          skillsService.getNameIfDiscovered(selectedAsSkill())
+        }}</span>
+      </div>
+      <div class="info-content">
+        <br />
+
+        <span class="info-type">(Skill)</span>
+
+        <span class="info-cooldown"
+          >Tree: {{ skillsService.getTree(selectedAsSkill()) }}</span
+        >
+
+        <p
+          [innerHtml]="skillsService.getInfoDescription(selectedAsSkill())"
+        ></p>
       </div>
     </div>
   </div>

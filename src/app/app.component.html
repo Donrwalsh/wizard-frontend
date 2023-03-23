@@ -1,23 +1,25 @@
-<br />
-<div *ngIf="gameActive">Nemesis attacks in {{nemesisAttackTimer}}</div>
-<div *ngIf="!gameActive">Game Over</div>
+<div id="main-panel">
+  <br />
+  <div *ngIf="gameActive">Nemesis attacks in {{ nemesisAttackTimer }}</div>
+  <div *ngIf="!gameActive">Game Over</div>
 
-<br />
+  <br />
 
-<app-resource-display></app-resource-display>
+  <app-resource-display></app-resource-display>
 
-<br />
-<br />
-<button *ngIf="!gameActive" (click)="restart()">Restart</button>
-<br />
-<br />
+  <br />
+  <br />
+  <button *ngIf="!gameActive" (click)="restart()">Restart</button>
+  <br />
+  <br />
 
-<app-skills></app-skills>
+  <app-skills></app-skills>
 
-<app-events></app-events>
+  <app-events></app-events>
 
-<app-info></app-info>
+  <app-info></app-info>
 
-<app-moves></app-moves>
+  <app-moves></app-moves>
 
-<button (click)="restart()">Restart</button>
+  <button (click)="restart()">Restart</button>
+</div>

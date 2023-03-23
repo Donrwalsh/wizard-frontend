@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { complete, ResourceBundle } from '../resources/resources.model';
 import { Skill, SkillData, SkillTree } from '../skills/skills.model';
+import * as icons from '../copy/icons';
+import * as info from '../copy/info';
 
 @Injectable({ providedIn: 'root' })
 export class SkillsService {
@@ -14,6 +16,7 @@ export class SkillsService {
       discoveryCost: { basicScrolls: 2 },
       unlockCost: { basicMana: 10 },
       prereq: ['Conjuration School'],
+      image: icons.enhancedFocusSpell,
     },
     {
       name: 'Conjuration School',
@@ -22,6 +25,7 @@ export class SkillsService {
       discoveryCost: { basicScrolls: 1 },
       unlockCost: { basicMana: 10 },
       prereq: [],
+      image: icons.conjurationSchool,
     },
     {
       name: 'Enhanced Learn',
@@ -30,13 +34,49 @@ export class SkillsService {
       discoveryCost: { basicScrolls: 5 },
       unlockCost: { basicMana: 50 },
       prereq: ['Conjuration School'],
+      image: icons.enhancedLearnSpell,
     },
   ];
 
-  getWizardrySkillData(): SkillData[] {
-    return this.skillData.filter(
-      (skillData) => skillData.tree == SkillTree.wizardry
+  getImageIfDiscovered(skill: Skill): string {
+    let skillData = this.skillData.find(
+      (skillData) => skillData.name == skill.name
     );
+    return skillData && skill.discovered ? skillData.image : icons.unknownSkill;
+  }
+
+  getNameIfDiscovered(skill: Skill): string {
+    return skill.discovered ? skill.name : 'Unknown Skill';
+  }
+
+  pickOneRandomFrom(array: string[]): string {
+    return array[Math.floor(Math.random() * array.length)];
+  }
+
+  getTree(skill: Skill): string {
+    return (
+      this.skillData.find((skillData) => skillData.name == skill.name)?.tree ||
+      'You should never see this'
+    );
+  }
+
+  getInfoDescription(skill: Skill) {
+    let output = 'This could be just about anything.';
+    if (skill.discovered == true) {
+      if (skill.name == 'Conjuration School') {
+        output =
+          'Unlocking this skill grants access to the Conjuration School of magic Skill Tree.';
+      }
+      if (skill.name == 'Enhanced Focus') {
+        output =
+          'Unlocking this skill adds the Enhanced Focus spell to your spellbook';
+      }
+    }
+    return output;
+  }
+
+  getSkillDataByTree(tree: SkillTree): SkillData[] {
+    return this.skillData.filter((skillData) => skillData.tree == tree);
   }
 
   getUndiscoveredSkillsData(discoveredSkills: Skill[]): SkillData[] {

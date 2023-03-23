@@ -1,22 +1,12 @@
 import { Action, createReducer, on } from '@ngrx/store';
+import { SkillTree } from 'src/app/skills/skills.model';
 import { SkillsState } from '../app.state';
 import * as gameActions from '../game/game.actions';
 import * as actions from './skills.actions';
 
 export const initialState: SkillsState = {
-  discoveredSkills: [
-    // empty initially
-    // {
-    //   name: 'Conjuration School',
-    //   discovered: false,
-    //   unlocked: false,
-    // },
-    // {
-    //   name: 'Enhanced Focus',
-    //   discovered: false,
-    //   unlocked: false,
-    // },
-  ],
+  discoveredSkills: [],
+  visibleTree: SkillTree.wizardry,
 };
 
 const featureReducer = createReducer(
@@ -36,6 +26,11 @@ const featureReducer = createReducer(
             },
           ]
         : state.discoveredSkills,
+  })),
+
+  on(actions.setVisibleSkillTree, (state, { tree }) => ({
+    ...state,
+    visibleTree: tree,
   }))
 );
 

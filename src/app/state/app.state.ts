@@ -1,7 +1,7 @@
 import { ActionReducerMap } from '@ngrx/store';
 import { GameEvent } from '../events/event.model';
 import { Move } from '../moves/moves.model';
-import { Skill } from '../skills/skills.model';
+import { Skill, SkillTree } from '../skills/skills.model';
 import { skillsReducer } from './skills/skills.reducer';
 import { eventsReducer } from './events/events.reducer';
 import { gameReducer } from './game/game.reducer';
@@ -10,11 +10,12 @@ import { resourcesReducer } from './resources/resources.reducer';
 import { infoReducer } from './info/info.reducer';
 
 export interface SkillsState {
+  visibleTree: SkillTree;
   discoveredSkills: Skill[];
 }
 
 export interface InfoState {
-  selected: Move | null;
+  selected: Move | Skill | null;
   type: string;
 }
 

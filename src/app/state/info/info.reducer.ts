@@ -13,6 +13,12 @@ const featureReducer = createReducer(
     ...state,
     selected: move,
     type: 'Move',
+  })),
+
+  on(actions.showSkillInfo, (state, { skill }) => ({
+    ...state,
+    selected: skill,
+    type: 'Skill',
   }))
 );
 

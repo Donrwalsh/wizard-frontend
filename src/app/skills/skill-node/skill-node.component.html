@@ -1,0 +1,9 @@
+<div (mouseenter)="onMouseEnter()" *ngIf="skillData != undefined">
+  <!-- <p>{{ skillData.name }}</p>
+  <p>discovered: {{ discovered }}</p>
+  <p>unlocked: {{ unlocked }}</p> -->
+  <img
+    class="skill-node"
+    src="{{ discovered ? skillData.image : getUnkownImage() }}"
+  />
+</div>

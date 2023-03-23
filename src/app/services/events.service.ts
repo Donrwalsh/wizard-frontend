@@ -38,7 +38,7 @@ export class EventsService {
       output += `${Math.abs(outcome.resource.basicScrolls)} {basic scrolls} `;
     }
     output += `discovering the ${outcome.discovery} `;
-    output += outcome.discovery?.includes('School') ? `of Magic!` : `spell!`;
+    output += outcome.discovery?.includes('School') ? `of Magic!` : `skill!`;
     return output;
   }
 
