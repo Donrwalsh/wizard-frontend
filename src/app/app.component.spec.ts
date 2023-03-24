@@ -8,7 +8,13 @@ import { AppComponent } from './app.component';
   selector: 'app-skills',
   template: '<p>Mock Skills Component</p>',
 })
-class MockDiscoveriesComponent {}
+class MockSkillsComponent {}
+
+@Component({
+  selector: 'app-info',
+  template: '<p>Mock Info Component</p>',
+})
+class MockInfoComponent {}
 
 @Component({
   selector: 'app-events',
@@ -34,10 +40,11 @@ describe('AppComponent', () => {
       imports: [RouterTestingModule],
       declarations: [
         AppComponent,
-        MockDiscoveriesComponent,
         MockEventsComponent,
-        MockResourceDisplayComponent,
+        MockInfoComponent,
         MockMovesComponent,
+        MockResourceDisplayComponent,
+        MockSkillsComponent,
       ],
       providers: [provideMockStore({})],
     }).compileComponents();
