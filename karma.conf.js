@@ -1,4 +1,5 @@
 const os = require('os');
+process.env.CHROME_BIN = require('puppeteer').executablePath()
 const chromeHeadlessSupported = os.platform() !== 'win32' || Number((os.release().match(/^(\d+)/) || ['0', '0'])[1]) >= 10;
 module.exports = function (config) {
   config.set({
@@ -30,14 +31,8 @@ module.exports = function (config) {
     autoWatch: true,
     browserNoActivityTimeout: 30000,
     browsers: [
-      chromeHeadlessSupported ? 'ChromeHeadless' : 'Chrome'
+      'ChromeHeadless'
     ],
-    customLaunchers: {
-      ChromeHeadless: {
-        base: 'Chrome',
-        flags: ['--no-sandbox', '--headless', '--disable-gpu', '--remote-debugging-port=9222']
-      }
-    },
     singleRun: true
   });
 };

@@ -7,7 +7,7 @@ pipeline {
                 sh 'ls'
                 sh 'rm -rf node_modules'
                 sh 'npm install --cache=".jenkins-npm-cache"'
-                // sh 'npm run test-ci'
+                sh 'npm run test-ci'
             }
         }
         stage('Build & Deploy') {
