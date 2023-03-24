@@ -7,6 +7,7 @@ pipeline {
                 sh 'ls'
                 sh 'rm -rf node_modules'
                 sh 'npm install --cache=".jenkins-npm-cache"'
+                sh 'export CHROME_BIN=/usr/bin/chromium-browser'
                 sh 'npm run test-ci'
             }
         }
